@@ -1,0 +1,10 @@
+@page "/"
+@using LoginComponet
+<AuthorizeView>
+    <Authorized>
+        Hi, @context.User.Identity.Name;
+    </Authorized>
+    <NotAuthorized>
+        <Login/>
+    </NotAuthorized>
+</AuthorizeView>

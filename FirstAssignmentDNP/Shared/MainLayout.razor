@@ -1,0 +1,27 @@
+@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+<div class="page">
+    <AuthorizeView>
+        <Authorized>
+            <div class="sidebar">
+                        <NavMenu/>
+                    </div>
+        </Authorized>
+    </AuthorizeView>
+
+    <div class="main">
+                <div class="content px-4">
+                    @Body
+                </div>
+            </div>
+        </div>
+@code
+{
+    [CascadingParameter] 
+    protected Task<AuthenticationState> AuthStat { get; set; }
+    protected async override Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+    }
+}

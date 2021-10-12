@@ -1,0 +1,52 @@
+﻿@page "/Profile/{Username}"
+@page "/Profile"
+@using Models
+@using FirstAssignmentDNP.Data
+@inject IUsersData UsersData
+<div class="bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 mt-5 pt-5">
+                <div class="row z-depth-3">
+                    <div class="col-sm-4 bg-info rounded-left">
+                        <div class="card-block text-center text-white">
+                            <i class="fas fa-user-tie fa-7x mt-5"></i>
+                            <h2 class="font-weight-bold mt-4">Name</h2>
+                            <p>Profile info</p>
+                             <img src="Images/Users/@user.Photo" alt="Family photo" style="width: 45px; height: 45px;" class="rounded-circle">
+                            <i class="far fa-edit-tie fa-2x mb-5"></i>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 bg-white rounded-right">
+                        <h3 class="mt-3 text-center">Information</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold">Email:</p>
+                                <h6 clsas="text-muted"></h6>
+                            </div>
+                        </div>
+                        <h4 class="mt-3">Family info</h4>
+                            <hr class="bg-primary">
+                        <div class="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@code {
+
+    [Parameter]
+    public string Username { get; set; }
+
+    public User user { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        user = UsersData.GetUsers().First(u => u.Username.Equals(Username));
+    }
+
+}
