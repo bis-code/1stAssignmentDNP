@@ -1,0 +1,13 @@
+[
+  {
+    "Id": 1,
+    "Username": "Ionut",
+    "Password": "12345",
+    "Photo" : "ionut.png",
+    "FirstName": "Baicoianu",
+    "LastName": "Ioan-Sorin",
+    "SecurityLevel": 4,
+    "Role": "Admin",
+    "Family": null
+  }
+]
