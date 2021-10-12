@@ -11,20 +11,43 @@ namespace FirstAssignmentDNP.Data
         private IList<User> users;
         private string usersFile = "users.json";
 
-        private static UsersJSONData instance;
-
         public UsersJSONData()
         {
-            string content = File.ReadAllText(usersFile);
-            users = JsonSerializer.Deserialize<List<User>>(content);
+            if (!File.Exists(usersFile))
+            {
+                Seed();
+                WriteUsersToFile();
+            }
+            else
+            {
+                string content = File.ReadAllText(usersFile);
+                users = JsonSerializer.Deserialize<List<User>>(content);
+            }
         }
 
-        public IList<User> GetUsers()
+        private void Seed()
         {
-            List<User> tmp = new List<User>(users);
-            return tmp;
+            users = new[]
+            {
+                new User()
+                {
+                    Username = "Ionut",
+                    Id = 2,
+                    Password = "12345",
+                    SecurityLevel = 4,
+                    Role = "Admin",
+                },
+                new User()
+                {
+                    Username = "Baicoianu",
+                    Id = 3,
+                    Password = "12345",
+                    SecurityLevel = 2,
+                    Role = "Member",
+                }
+            }.ToList();
         }
-
+        
         public void AddUser(User user)
         {
             int max = users.Max(user => user.Id);
@@ -35,7 +58,12 @@ namespace FirstAssignmentDNP.Data
             users.Add(user);
             WriteUsersToFile();
         }
-        
+
+        public IList<User> GetUsers()
+        {
+            List<User> tmp = new List<User>(users);
+            return tmp;
+        }
         public void RemoveUser(int userID)
         {
             User toRemove = users.First(u => u.Id == userID);
@@ -51,6 +79,7 @@ namespace FirstAssignmentDNP.Data
             toUpdate.Role = user.Role;
             toUpdate.SecurityLevel = user.SecurityLevel;
             toUpdate.Password = user.Password;
+            toUpdate.Family = user.Family;
             WriteUsersToFile();
         }
 
@@ -59,6 +88,10 @@ namespace FirstAssignmentDNP.Data
             return users.FirstOrDefault(u => u.Id == userID);
         }
 
+        public User Get(string username)
+        {
+            return users.FirstOrDefault(u => u.Username.Equals(username));
+        }
         public void AddFamilyToUser(Family family, int userId)
         {
             User toUpdate = users.First(u => u.Id == userId);

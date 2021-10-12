@@ -33,6 +33,7 @@ namespace FirstAssignmentDNP
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<FileContext>();
+            services.AddSingleton<UsersJSONData>();
             services.AddSingleton<IUsersData, UsersJSONData>();
             services.AddScoped<IUserService, InMemUserService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();

@@ -11,5 +11,7 @@ namespace FirstAssignmentDNP.Data
         void RemoveUser(int userID);
         void Update(User user);
         User Get(int userID);
+
+        User Get(string username);
     }
 }

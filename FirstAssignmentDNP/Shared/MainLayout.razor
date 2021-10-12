@@ -17,11 +17,8 @@
         </div>
 @code
 {
-    [CascadingParameter] 
-    protected Task<AuthenticationState> AuthStat { get; set; }
     protected async override Task OnInitializedAsync()
     {
         base.OnInitialized();
-        var user = (await AuthStat).User;
     }
 }

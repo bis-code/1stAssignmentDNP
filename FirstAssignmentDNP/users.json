@@ -3,11 +3,33 @@
     "Id": 1,
     "Username": "Ionut",
     "Password": "12345",
-    "Photo" : "ionut.png",
+    "Photo": "ionut.png",
     "FirstName": "Baicoianu",
     "LastName": "Ioan-Sorin",
     "SecurityLevel": 4,
     "Role": "Admin",
+    "Family": null
+  },
+  {
+    "Id": 2,
+    "Username": "Ionutel",
+    "Password": "12345",
+    "Photo": null,
+    "FirstName": "Baicoianu",
+    "LastName": "Ionut",
+    "SecurityLevel": 0,
+    "Role": "Member",
+    "Family": null
+  },
+  {
+    "Id": 3,
+    "Username": "alessia",
+    "Password": "123455",
+    "Photo": "default.jpg",
+    "FirstName": "sdad",
+    "LastName": "asdad",
+    "SecurityLevel": 0,
+    "Role": "Member",
     "Family": null
   }
 ]

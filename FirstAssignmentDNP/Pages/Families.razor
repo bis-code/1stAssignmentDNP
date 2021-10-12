@@ -56,7 +56,7 @@ else
                 <tr>
                     <td>
                         <div class="d-flex align-items-center">
-                           
+                           <img src="Images/Families/@item.Photo" alt="Family photo" style="width: 45px; height: 45px;" class="rounded-circle">
                         <div class="mx-3">
                             <p class="fw-bold mb-1">Family ID: @item.Id</p>
                             <p class="text-muted mb-0">Address Info: @item.StreetName, Nr. @item.HouseNumber</p>
@@ -133,7 +133,7 @@ else
         }
         catch (Exception e)
         {
-            
+
         }
         if (filterByLastname != null)
         {
@@ -145,9 +145,10 @@ else
         }
         ExecuteFilterFamily();
     }
-    private void MoreInfo(int id)
+
+    private void MoreInfo(int Id)
     {
-        NavigationManager.NavigateTo($"FamilyInfo/{id}");
+        NavigationManager.NavigateTo($"FamilyInfo/{Id}");
     }
 
     private void ExecuteFilterFamily()

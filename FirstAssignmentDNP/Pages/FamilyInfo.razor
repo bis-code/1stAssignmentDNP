@@ -1,13 +1,46 @@
 ﻿@page "/FamilyInfo/{Id:int}"
+@using Models
+@using FileData
+@using System.IO
+@inject FileContext FileContext
 <h3>FamilyInfo, @Id</h3>
 
-
+@* <div class="row"> *@
+@*     <div class="col-lg-12 col-md-12"> *@
+@*         <div class="card"> *@
+@*             <div class="card-body"> *@
+@*                 <img src="Images/Families/@_family.Photo" alt="Family photo" class="img-fluid rounded-circle w-50 m-3"/> *@
+@*                 <h3>Family name: @_family.Adults[0].LastName</h3> *@
+@*                 <h5>Father: @_family.Adults.Find(a => a.Sex.Equals("M")).FirstName, and @_family.Adults.Find(a => a.Sex.Equals("F")).FirstName</h5> *@
+@*                 <p>Net salary @(Salary(_family.Adults.ToList())) </p> *@
+@*             </div> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
 
 @code {
 
     [Parameter]
     public int Id { get; set; }
-    
-    
-    
+
+    private Family _family;
+
+
+    // protected override Task OnInitializedAsync()
+    // {
+    //     base.OnInitialized();
+    //     _family = FileContext.Families.First(f => f.Id == Id);
+    // }
+    //
+    // private int Salary(List<Adult> adults)
+    // {
+    //     int sum = 0;
+    //     foreach (var vAdult in adults)
+    //     {
+    //         sum += vAdult.JobTitle.Salary;
+    //     }
+    //
+    //     return sum;
+    // }
+
 }

@@ -1,0 +1,40 @@
+﻿@page "/Register"
+@using Models
+@using FirstAssignmentDNP.Data
+@using Microsoft.AspNetCore.Components
+
+@inject NavigationManager NavigationManager
+@inject IUsersData UsersData
+
+
+<div class="wrapper"></div>
+<div class="container">
+    <div class="row no-gutters">
+        <div class="form-box ">
+            <h1 class="font-weight-bold py-3">Login</h1>
+            <h4>Sign into your account</h4>
+            <form class="input-group">
+                <input type="text" placeholder="user name" @bind-value="newUserItem.Username" class="input-field"/>
+                <input type="password" placeholder="password" @bind-value="newUserItem.Password" class="input-field"/>
+                <input type="text" placeholder="first name" @bind-value="newUserItem.FirstName" class="input-field"/>
+                <input type="text" placeholder="last name" @bind-value="newUserItem.LastName" class="input-field"/>
+                <button type="button" class="submit-btn" @onclick="AddNewUser">Login</button>
+                <div style="color:red"> @errorMessage</div>
+                <p>You arlready have an account? <a href="/login">Login here</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+@code {
+    private User newUserItem = new User();
+
+    private string errorMessage;
+
+    private void AddNewUser()
+    {
+        UsersData.AddUser(newUserItem);
+        NavigationManager.NavigateTo("/");
+    }
+
+}

@@ -1,9 +1,9 @@
 ﻿@page "/Profile/{Username}"
-@page "/Profile"
 @using Models
 @using FirstAssignmentDNP.Data
 @inject IUsersData UsersData
-<div class="bg-light">
+@inject NavigationManager NavigationManager
+<div>
     <div class="container">
         <div class="row d-flex justify-content-center">
             <div class="col-md-10 mt-5 pt-5">
@@ -11,9 +11,9 @@
                     <div class="col-sm-4 bg-info rounded-left">
                         <div class="card-block text-center text-white">
                             <i class="fas fa-user-tie fa-7x mt-5"></i>
-                            <h2 class="font-weight-bold mt-4">Name</h2>
+                            <h2 class="font-weight-bold mt-4">@_user.Username</h2>
                             <p>Profile info</p>
-                             <img src="Images/Users/@user.Photo" alt="Family photo" style="width: 45px; height: 45px;" class="rounded-circle">
+                            <img src="Images/Users/@_user.Photo" alt="Profile photo" style="width: 60px; height: 60px;" class="rounded-circle">
                             <i class="far fa-edit-tie fa-2x mb-5"></i>
                         </div>
                     </div>
@@ -22,31 +22,62 @@
                         <hr class="badge-primary mt-0 w-25">
                         <div class="row">
                             <div class="col-sm-6">
-                                <p class="font-weight-bold">Email:</p>
-                                <h6 clsas="text-muted"></h6>
+                                <p class="font-weight-bold">First name: @_user.FirstName</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p class="font-weight-bold">Last name: @_user.LastName</p>
                             </div>
                         </div>
-                        <h4 class="mt-3">Family info</h4>
+                        @if (_user.Role.Equals("Admin"))
+                        {
+                            <div class="col-sm-6">
+                                 <p class="btn btn-warning btn-sm">@_user.Role level @_user.SecurityLevel</p>
+                            </div>
+                                }
+                        else
+                        {
+                            <div class="col-sm-6">
+                                <p class="btn btn-info btn-sm">@_user.Role</p>
+                            </div>
+                                }
+                        @if (_user.Family != null)
+                        {
+                            <h4 class="mt-3">Family Info</h4>
                             <hr class="bg-primary">
-                        <div class="row">
+                            <div class="row">
 
+                            </div>
+                        }
+                        else if (_user.Family == null)
+                        {
+                            <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => AddFamilyToUser(_user.Id))"> Add Family</button>
                         </div>
+                        }
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @code {
 
     [Parameter]
-    public string Username { get; set; }
+    public string username { get; set; }
 
-    public User user { get; set; }
+    private User _user;
+    private Family _family = new Family();
 
-    protected async override Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
-        user = UsersData.GetUsers().First(u => u.Username.Equals(Username));
+        base.OnInitialized();
+        _user = UsersData.GetUsers().First(u => u.Username.Equals(username));
+    }
+
+    private void AddFamilyToUser(int userID)
+    {
+        NavigationManager.NavigateTo($"/AddFamily/{userID}");
     }
 
 }

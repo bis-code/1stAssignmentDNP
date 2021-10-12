@@ -25,8 +25,8 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Profile" @onclick="MyProfile">
-                <span class="oi oi-info" aria-hidden="true"></span> My Profile
+            <NavLink class="nav-link" @onclick="MyProfile">
+                <span class="oi oi-info" aria-hidden="true"></span> My Profile bugged
             </NavLink>
         
         </li>
@@ -50,15 +50,18 @@
     private IUsersData UsersData;
     
     [CascadingParameter]
-    protected Task<AuthenticationState> authState { get; set; }
+    protected Task<AuthenticationState> AuthStat { get; set; }
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
-        var user = (await authState).User;
-        username = user.Identity.Name;
+        var user = (await AuthStat).User;
+        if (user.Identity.IsAuthenticated)
+        {
+            username = user.Identity.Name;
+        }
 
     }
     private void ToggleNavMenu()
@@ -81,8 +84,15 @@
         {
         }
     }
-    private async Task MyProfile()
+    public async Task MyProfile()
     {
-        NavigationManager.NavigateTo($"Profile/{username}");
+        try
+        {
+            NavigationManager.NavigateTo($"Profile/{username}");
+        }
+        catch (Exception e)
+        {
+            
+        }
     }
 }
