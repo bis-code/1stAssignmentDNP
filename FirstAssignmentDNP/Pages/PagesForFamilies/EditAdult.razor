@@ -62,17 +62,18 @@ else
 
     private Adult adultToEdit;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        base.OnInitialized();
-        adultToEdit = FileContext.Families.First(f => f.Id == IdFamily).Adults.Find(a => a.Id == Id);
+        adultToEdit = FileContext.Families.First(f => f.Id == IdFamily).Adults.Find(a => a.Id == idOfThatAdult);
     }
 
-    private void Save()
+    public void Save()
     {
-        FileContext.Families.First(f => f.Id == IdFamily).Adults.Insert(idOfThatAdult, adultToEdit);
+        int id = FileContext.Families.First(f => f.Id == IdFamily).Adults.IndexOf(adultToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(FileContext.Families.First(f => f.Id == IdFamily).Adults[id]);
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Add(adultToEdit);
         FileContext.SaveChanges();
-        NavigationManager.NavigateTo($"/FamiliyInfo/{IdFamily}");
+        NavigationManager.NavigateTo("/Families");
     }
 
 }

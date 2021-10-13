@@ -11,30 +11,14 @@
           "Salary": 66408
         },
         "Id": 1,
-        "FirstName": "Lyla",
+        "FirstName": "adsad",
         "LastName": "Humphrey",
         "HairColor": "Black",
         "EyeColor": "Brown",
         "Age": 36,
         "Weight": 64.8,
         "Height": 147,
-        "Sex": "F",
-        "Photo": null
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "No job",
-          "Salary": 66408
-        },
-        "Id": 1,
-        "FirstName": "Lyla",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 36,
-        "Weight": 64.8,
-        "Height": 147,
-        "Sex": "F",
+        "Sex": "M",
         "Photo": null
       },
       {
@@ -43,7 +27,7 @@
           "Salary": 71456
         },
         "Id": 2,
-        "FirstName": "Samara",
+        "FirstName": "Samanta",
         "LastName": "Humphrey",
         "HairColor": "Black",
         "EyeColor": "Brown",
@@ -155,7 +139,7 @@
           "Salary": 36813
         },
         "Id": 11,
-        "FirstName": "Zahra",
+        "FirstName": "Ionut",
         "LastName": "Salt",
         "HairColor": "Brown",
         "EyeColor": "Grey",
@@ -584,6 +568,33 @@
         "Photo": null
       }
     ],
+    "Pets": []
+  },
+  {
+    "Id": 10,
+    "Photo": "default.png",
+    "StreetName": "324",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
+    "Id": 11,
+    "Photo": "default.png",
+    "StreetName": "Kamtjatka",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
+    "Id": 12,
+    "Photo": "default.png",
+    "StreetName": "Kamtjatka",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
     "Pets": []
   }
 ]

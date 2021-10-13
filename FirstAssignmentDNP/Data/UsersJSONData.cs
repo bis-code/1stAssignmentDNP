@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
+using FileData;
 using Models;
 
 namespace FirstAssignmentDNP.Data
@@ -11,6 +13,7 @@ namespace FirstAssignmentDNP.Data
     {
         private IList<User> users;
         private string usersFile = "users.json";
+        private FileContext FileContext = new FileContext();
 
         public UsersJSONData()
         {
@@ -53,11 +56,11 @@ namespace FirstAssignmentDNP.Data
         {
             int max = users.Max(user => user.Id);
             user.Id = (++max);
-            user.Family = null;
-            user.Person = null;
             user.Role = "Member";
             user.Photo = "default.png";
             user.SecurityLevel = 0;
+            user.Family = null;
+            user.Person = null;
             users.Add(user);
             WriteUsersToFile();
         }

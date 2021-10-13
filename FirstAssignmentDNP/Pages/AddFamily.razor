@@ -1,7 +1,9 @@
 ﻿@page "/AddFamily/{Id:int}"
 @using Models
 @using FirstAssignmentDNP.Data
+@using FileData
 @inject IUsersData UsersData
+@inject FileContext FileContext
 @inject NavigationManager NavigationManager
 
 @if (_user.Person == null)
@@ -14,26 +16,46 @@
 }
 else
 {
+    <form>
     
+            <div class="form-group col-md-6">
+                <label for="inputNumber">House Number</label>
+                <input type="number" id="inputNumber" class="form-control col-md-2" @bind-value="_family.HouseNumber"/>
+            </div>
+        <div class="form-group col-md-4">
+                        <label for="inputStreetName">Street Name</label>
+                        <input type="text" class="form-control" id="inputStreetName" @bind-value="_family.StreetName"/>
+                    </div>
+        <button type="submit" class="btn btn-primary" @onclick="AddFamilyToUser">Edit</button>
+    </form>
 }
 @code {
     [Parameter] 
     public int Id { get; set; }
 
     private User _user;
+    private Family _family = new Family();
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        base.OnInitializedAsync();
         _user = UsersData.Get(Id);
-
     }
 
-    public async Task AddPersonToUser()
+    public void AddFamilyToUser()
     {
-        NavigationManager.NavigateTo($"/AddPersonToUser/{Id}");
+        int max = FileContext.Families.Max(f => f.Id);
+        _family.Id = (++max);
+        _family.Photo = "default.png";
+        _family.Children = new List<Child>();
+        _family.Pets = new List<Pet>();
+        FileContext.AddFamily(_family);
+        NavigationManager.NavigateTo("/");
     }
-    
+
+    public void AddPersonToUser()
+    {
+    NavigationManager.NavigateTo($"/AddPersonToUser/{Id}");
+    }
     
 
 }

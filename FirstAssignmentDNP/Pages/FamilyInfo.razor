@@ -89,7 +89,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditAdult(_family.Id))">Edit</button>
+                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditAdult(_family.Adults.IndexOf(adult),_family.Id))">Edit</button>
                     </div>
                     <div class="col-lg-6"></div>
                 </div>
@@ -158,7 +158,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditChild(child.Id))">Edit</button>
+                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditChild(child.Id))">Edit</button>
                     </div>
                     <div class="col-lg-6"></div>
                 </div>
@@ -197,7 +197,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6">
-                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
                     </div>
                     <div class="col-lg-6"></div>
                 </div>
@@ -240,7 +240,7 @@
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
-                                <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                                <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
                             </div>
                             <div class="col-lg-6"></div>
                         </div>
@@ -269,7 +269,7 @@
     private Family _family;
 
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         base.OnInitialized();
         _family = FileContext.Families.FirstOrDefault(f => f.Id == Id);
@@ -298,11 +298,11 @@
         NavigationManager.NavigateTo($"/EditFamily/{Id}");
     }
 
-    private void EditAdult(int IdFamily)
+    private void EditAdult(int adultIndex, int IdFamily)
     {
         try
         {
-            int idOfThatAdult = FileContext.Families.First(f => f.Id == IdFamily).Adults[Id].Id;
+            int idOfThatAdult = _family.Adults[adultIndex].Id;
             NavigationManager.NavigateTo($"/EditAdult/{IdFamily}/{idOfThatAdult}");
         }
         catch (Exception e)

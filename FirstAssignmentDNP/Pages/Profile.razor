@@ -96,9 +96,8 @@
     private User _user;
     private Family _family = new Family();
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
-        base.OnInitialized();
         _user = UsersData.GetUsers().First(u => u.Username.Equals(username));
     }
 

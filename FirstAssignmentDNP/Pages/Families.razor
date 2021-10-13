@@ -15,9 +15,6 @@
             Filter by Family Id: <input type="number" @oninput="@((arg) => FilterByUserId(arg))" style="width: 50px"/>
         </p>
     </div>
-    <div class="col-lg-4">
-        <p>Filter by Familyname: <input type="text" @oninput="@((arg) => FilterByLastName(arg))" style="width: 100px"/></p>
-    </div>
 </div>
 <p>
 </p>
@@ -60,7 +57,15 @@ else
                         <div class="mx-3">
                             <p class="fw-bold mb-1">Family ID: @item.Id</p>
                             <p class="text-muted mb-0">Address Info: @item.StreetName, Nr. @item.HouseNumber</p>
-                            <p class="text-info mb-0">Familyname: @item.Adults[0].LastName</p>
+                            @if (item.Adults.Count > 0)
+                            {
+                                <p class="text-info mb-0">Familyname: @item.Adults[0].LastName</p>
+
+                            }
+                            else
+                            {
+                                <p class="text-info mb-0">No adults added.</p>
+                            }
                         </div>
                         </div>
                     </td>
@@ -86,21 +91,11 @@ else
     private User _user;
 
     private int? filterById;
-    private string? filterByLastname;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         allFamilies = FileContext.Families;
         families = allFamilies;
-    }
-
-    private async Task RemoveTodo(int familyId)
-    {
-        Family familyToRemove = families.First(f => f.Id == familyId);
-        FileContext.Families.Remove(familyToRemove);
-        allFamilies.Remove(familyToRemove);
-        families.Remove(familyToRemove);
-        FileContext.SaveChanges();
     }
 
     private void FilterByUserId(ChangeEventArgs changeEventArgs)
@@ -124,28 +119,6 @@ else
         ExecuteFilterFamily();
     }
 
-    private void FilterByLastName(ChangeEventArgs changeEventArgs)
-    {
-        filterByLastname = null;
-        try
-        {
-            filterByLastname = changeEventArgs.Value.ToString();
-        }
-        catch (Exception e)
-        {
-
-        }
-        if (filterByLastname != null)
-        {
-            families = allFamilies.Where(f => f.Adults[0].LastName.Equals(filterByLastname)).ToList();
-        }
-        else
-        {
-            families = allFamilies;
-        }
-        ExecuteFilterFamily();
-    }
-
     public void MoreInfo(int Id)
     {
         NavigationManager.NavigateTo($"FamilyInfo/{Id}");
@@ -154,7 +127,7 @@ else
     private void ExecuteFilterFamily()
     {
         families = allFamilies.Where(f => (filterById != null && f.Id == filterById
-                                           || filterById == null) && (filterByLastname != null && f.Adults[0].LastName.Equals(filterByLastname) || filterByLastname == null)).ToList();
+                                           || filterById == null)).ToList();
     }
 
 }
