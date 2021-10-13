@@ -1,38 +1,13 @@
 [
   {
-    "Id" : 0,
-    "Photo" : "default.png",
-    "StreetName": "Bay Avenue",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Mascot",
-          "Salary": 99821
-        },
-        "Id": 0,
-        "FirstName": "Yasmine",
-        "LastName": "Baxter",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 58,
-        "Weight": 39.8,
-        "Height": 174,
-        "Sex": "F"
-      }
-    ],
-    "Children": [],
-    "Pets": []
-  },
-  {
-    "Id" : 1,
-    "Photo" : "default.png",
+    "Id": 1,
+    "Photo": "default.png",
     "StreetName": "Innovation Avenue",
     "HouseNumber": 1,
     "Adults": [
       {
         "JobTitle": {
-          "JobTitle": "Front End Web Developer",
+          "JobTitle": "No job",
           "Salary": 66408
         },
         "Id": 1,
@@ -43,7 +18,24 @@
         "Age": 36,
         "Weight": 64.8,
         "Height": 147,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
+      },
+      {
+        "JobTitle": {
+          "JobTitle": "No job",
+          "Salary": 66408
+        },
+        "Id": 1,
+        "FirstName": "Lyla",
+        "LastName": "Humphrey",
+        "HairColor": "Black",
+        "EyeColor": "Brown",
+        "Age": 36,
+        "Weight": 64.8,
+        "Height": 147,
+        "Sex": "F",
+        "Photo": null
       },
       {
         "JobTitle": {
@@ -58,7 +50,8 @@
         "Age": 34,
         "Weight": 37,
         "Height": 145,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Children": [
@@ -86,7 +79,8 @@
         "Age": 10,
         "Weight": 35,
         "Height": 155,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -108,7 +102,8 @@
         "Age": 6,
         "Weight": 85.1,
         "Height": 130,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -142,645 +137,15 @@
         "Age": 15,
         "Weight": 84.405,
         "Height": 183,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Pets": []
   },
   {
-    "Id" : 2,
-    "Photo" : "default.png",
-    "StreetName": "William Street",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Skin Care Specialist",
-          "Salary": 20545
-        },
-        "Id": 3,
-        "FirstName": "Chaya",
-        "LastName": "Mcclure",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 59,
-        "Weight": 32.4,
-        "Height": 167,
-        "Sex": "F"
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "Vice Principal",
-          "Salary": 72901
-        },
-        "Id": 4,
-        "FirstName": "Ophelia",
-        "LastName": "Nathan",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 50,
-        "Weight": 106,
-        "Height": 172,
-        "Sex": "F"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Ninja Turtles",
-            "Description": "Young, genetically modified, secret assassin tortoise"
-          },
-          {
-            "Type": "Hockey",
-            "Description": "Not the one on ice"
-          }
-        ],
-        "Pets": [],
-        "Id": 4,
-        "FirstName": "Meredith",
-        "LastName": "Mcclure",
-        "HairColor": "Black",
-        "EyeColor": "Grey",
-        "Age": 24,
-        "Weight": 45.73,
-        "Height": 147,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Frozen",
-            "Description": "Can we let this one go?"
-          }
-        ],
-        "Pets": [],
-        "Id": 5,
-        "FirstName": "Aria",
-        "LastName": "Mcclure",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 5,
-        "Weight": 16.32,
-        "Height": 96,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Choir Singing",
-            "Description": "Aka covey super spreader event"
-          },
-          {
-            "Type": "Bowling",
-            "Description": "Balls to the pins"
-          },
-          {
-            "Type": "Chess",
-            "Description": "The poor die first in war"
-          }
-        ],
-        "Pets": [],
-        "Id": 6,
-        "FirstName": "Reyes",
-        "LastName": "Mcclure",
-        "HairColor": "Grey",
-        "EyeColor": "Brown",
-        "Age": 27,
-        "Weight": 60,
-        "Height": 170,
-        "Sex": "M"
-      }
-    ],
-    "Pets": [
-      {
-        "Id": 0,
-        "Species": "Dog",
-        "Name": "Smokey",
-        "Age": 7
-      },
-      {
-        "Id": 1,
-        "Species": "Cat",
-        "Name": "Piglet",
-        "Age": 13
-      }
-    ]
-  },
-  {
-    "Id" : 3,
-    "Photo" : "default.png",
-    "StreetName": "Mitch Cromwood Avenue",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Teacher",
-          "Salary": 91588
-        },
-        "Id": 5,
-        "FirstName": "Soham",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Grey",
-        "Age": 48,
-        "Weight": 131.6,
-        "Height": 177,
-        "Sex": "M"
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "Service Advisor",
-          "Salary": 72532
-        },
-        "Id": 6,
-        "FirstName": "Anastasia",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 44,
-        "Weight": 99.8,
-        "Height": 147,
-        "Sex": "F"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Reading",
-            "Description": "Expand your horizon "
-          },
-          {
-            "Type": "Comic Books",
-            "Description": "Cartoons are for children, comics are for adults"
-          }
-        ],
-        "Pets": [],
-        "Id": 7,
-        "FirstName": "Lionel",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 3,
-        "Weight": 31.4,
-        "Height": 86,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Gymnastics",
-            "Description": "Dancing while throwing things in the air"
-          }
-        ],
-        "Pets": [],
-        "Id": 8,
-        "FirstName": "Natalee",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Hazel",
-        "Age": 21,
-        "Weight": 59.84,
-        "Height": 166,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Ballet",
-            "Description": "Classic danse on your toes"
-          },
-          {
-            "Type": "Bowling",
-            "Description": "Balls to the pins"
-          },
-          {
-            "Type": "Fishing",
-            "Description": "Mostly just hiding from the wife"
-          },
-          {
-            "Type": "Painting",
-            "Description": "Slightly more fancy than drawing"
-          }
-        ],
-        "Pets": [
-          {
-            "Id": 2,
-            "Species": "Rat",
-            "Name": "Bosley",
-            "Age": 0
-          }
-        ],
-        "Id": 9,
-        "FirstName": "Caliyah",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 8,
-        "Weight": 45.73,
-        "Height": 127,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Gymnastics",
-            "Description": "Dancing while throwing things in the air"
-          },
-          {
-            "Type": "Choir Singing",
-            "Description": "Aka covey super spreader event"
-          },
-          {
-            "Type": "Racing Cars",
-            "Description": "Drive super duper fast"
-          },
-          {
-            "Type": "Swimming",
-            "Description": "For people who identifies as fish"
-          },
-          {
-            "Type": "Lego",
-            "Description": "Deathtrap in the night"
-          }
-        ],
-        "Pets": [],
-        "Id": 10,
-        "FirstName": "Camilla",
-        "LastName": "Fitzgerald",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 16,
-        "Weight": 50.32,
-        "Height": 138,
-        "Sex": "F"
-      }
-    ],
-    "Pets": []
-  },
-  {
-    "Id" : 4,
-    "Photo" : "default.png",
-    "StreetName": "Elgin Avenue",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Janitor",
-          "Salary": 61437
-        },
-        "Id": 7,
-        "FirstName": "Cataleya",
-        "LastName": "Mcintyre",
-        "HairColor": "Blond",
-        "EyeColor": "Blue",
-        "Age": 52,
-        "Weight": 56.8,
-        "Height": 172,
-        "Sex": "F"
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "Office Clerk",
-          "Salary": 41332
-        },
-        "Id": 8,
-        "FirstName": "Andi",
-        "LastName": "Wells",
-        "HairColor": "Brown",
-        "EyeColor": "Amber",
-        "Age": 42,
-        "Weight": 27.6,
-        "Height": 148,
-        "Sex": "F"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Gaming",
-            "Description": "#PCMASTERRACE"
-          },
-          {
-            "Type": "Barbie",
-            "Description": "Dolls with impossible body standards"
-          }
-        ],
-        "Pets": [],
-        "Id": 11,
-        "FirstName": "Ellison",
-        "LastName": "Mcintyre",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 20,
-        "Weight": 81.2,
-        "Height": 174,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Archery",
-            "Description": "Old sport with bow and arrow"
-          },
-          {
-            "Type": "Choir Singing",
-            "Description": "Aka covey super spreader event"
-          },
-          {
-            "Type": "Scout",
-            "Description": "Gotta get all the emblems"
-          }
-        ],
-        "Pets": [],
-        "Id": 12,
-        "FirstName": "Renato",
-        "LastName": "Mcintyre",
-        "HairColor": "Brown",
-        "EyeColor": "Brown",
-        "Age": 19,
-        "Weight": 132,
-        "Height": 175,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Hula Hoop",
-            "Description": "I guess you play with a ring"
-          },
-          {
-            "Type": "Tap Dancing",
-            "Description": "Clickity clack"
-          },
-          {
-            "Type": "Chess",
-            "Description": "The poor die first in war"
-          }
-        ],
-        "Pets": [],
-        "Id": 13,
-        "FirstName": "Leila",
-        "LastName": "Mcintyre",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 13,
-        "Weight": 27.54,
-        "Height": 157,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Board Games",
-            "Description": "Boardgaming like a family"
-          },
-          {
-            "Type": "Bowling",
-            "Description": "Balls to the pins"
-          },
-          {
-            "Type": "Hockey",
-            "Description": "Not the one on ice"
-          }
-        ],
-        "Pets": [],
-        "Id": 14,
-        "FirstName": "Paul",
-        "LastName": "Mcintyre",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 21,
-        "Weight": 75.5,
-        "Height": 157,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Choir Singing",
-            "Description": "Aka covey super spreader event"
-          },
-          {
-            "Type": "Softball",
-            "Description": "Baseball for kids"
-          },
-          {
-            "Type": "Fishing",
-            "Description": "Mostly just hiding from the wife"
-          },
-          {
-            "Type": "Tractors",
-            "Description": "My nephew loves these"
-          }
-        ],
-        "Pets": [],
-        "Id": 15,
-        "FirstName": "Ace",
-        "LastName": "Mcintyre",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 10,
-        "Weight": 30.8,
-        "Height": 149,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Paper Plane Flying",
-            "Description": "Just crumble a paper into a ball and throw it"
-          }
-        ],
-        "Pets": [],
-        "Id": 16,
-        "FirstName": "Ervin",
-        "LastName": "Mcintyre",
-        "HairColor": "Blond",
-        "EyeColor": "Blue",
-        "Age": 1,
-        "Weight": 12.8,
-        "Height": 69,
-        "Sex": "M"
-      }
-    ],
-    "Pets": []
-  },
-  {
-    "Id" : 5,
-    "Photo" : "default.png",
-    "StreetName": "Railway Street",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Writer",
-          "Salary": 63392
-        },
-        "Id": 9,
-        "FirstName": "Genevieve",
-        "LastName": "Cruz",
-        "HairColor": "Leverpostej",
-        "EyeColor": "Brown",
-        "Age": 46,
-        "Weight": 102.5,
-        "Height": 164,
-        "Sex": "F"
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "Casino Host",
-          "Salary": 35445
-        },
-        "Id": 10,
-        "FirstName": "Lester",
-        "LastName": "Cruz",
-        "HairColor": "White",
-        "EyeColor": "Amber",
-        "Age": 39,
-        "Weight": 126.2,
-        "Height": 179,
-        "Sex": "M"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Handball",
-            "Description": "Hands on the ball"
-          },
-          {
-            "Type": "Archery",
-            "Description": "Old sport with bow and arrow"
-          },
-          {
-            "Type": "Painting",
-            "Description": "Slightly more fancy than drawing"
-          }
-        ],
-        "Pets": [
-          {
-            "Id": 3,
-            "Species": "Rat",
-            "Name": "Goober",
-            "Age": 2
-          }
-        ],
-        "Id": 17,
-        "FirstName": "Harlie",
-        "LastName": "Cruz",
-        "HairColor": "Brown",
-        "EyeColor": "Grey",
-        "Age": 13,
-        "Weight": 23.12,
-        "Height": 141,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Tap Dancing",
-            "Description": "Clickity clack"
-          },
-          {
-            "Type": "Harry Potter",
-            "Description": "Slightly more narrow than book reading"
-          },
-          {
-            "Type": "Archery",
-            "Description": "Old sport with bow and arrow"
-          }
-        ],
-        "Pets": [
-          {
-            "Id": 4,
-            "Species": "Rat",
-            "Name": "Remy",
-            "Age": 2
-          }
-        ],
-        "Id": 18,
-        "FirstName": "Blake",
-        "LastName": "Cruz",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 11,
-        "Weight": 42.670002,
-        "Height": 133,
-        "Sex": "F"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Bike Riding",
-            "Description": "I like to ride my bicicle"
-          },
-          {
-            "Type": "Clay Modelling",
-            "Description": "Another ashtray?"
-          },
-          {
-            "Type": "Ultimate",
-            "Description": "Chasing flying saucers"
-          },
-          {
-            "Type": "Hockey",
-            "Description": "Not the one on ice"
-          }
-        ],
-        "Pets": [],
-        "Id": 19,
-        "FirstName": "Izayah",
-        "LastName": "Cruz",
-        "HairColor": "Brown",
-        "EyeColor": "Brown",
-        "Age": 15,
-        "Weight": 69.2,
-        "Height": 163,
-        "Sex": "M"
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Bike Riding",
-            "Description": "I like to ride my bicicle"
-          },
-          {
-            "Type": "Racing Cars",
-            "Description": "Drive super duper fast"
-          },
-          {
-            "Type": "Scout",
-            "Description": "Gotta get all the emblems"
-          }
-        ],
-        "Pets": [],
-        "Id": 20,
-        "FirstName": "Donte",
-        "LastName": "Cruz",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 17,
-        "Weight": 83.4,
-        "Height": 181,
-        "Sex": "M"
-      }
-    ],
-    "Pets": [
-      {
-        "Id": 5,
-        "Species": "Dog",
-        "Name": "Dodger",
-        "Age": 0
-      }
-    ]
-  },
-  {
-    "Id" : 6,
-    "Photo" : "default.png",
+    "Id": 6,
+    "Photo": "default.png",
     "StreetName": "Airport Avenue",
     "HouseNumber": 1,
     "Adults": [
@@ -797,7 +162,8 @@
         "Age": 32,
         "Weight": 124.2,
         "Height": 174,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Children": [
@@ -825,7 +191,8 @@
         "Age": 12,
         "Weight": 27.54,
         "Height": 152,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       },
       {
         "Interests": [
@@ -854,7 +221,8 @@
         "Age": 2,
         "Weight": 18,
         "Height": 75,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -880,7 +248,8 @@
         "Age": 14,
         "Weight": 86.02,
         "Height": 153,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Pets": [
@@ -893,8 +262,8 @@
     ]
   },
   {
-    "Id" : 7,
-    "Photo" : "default.png",
+    "Id": 7,
+    "Photo": "default.png",
     "StreetName": "Sycamore Drive",
     "HouseNumber": 1,
     "Adults": [
@@ -911,7 +280,8 @@
         "Age": 59,
         "Weight": 54.4,
         "Height": 166,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       }
     ],
     "Children": [
@@ -951,7 +321,8 @@
         "Age": 0,
         "Weight": 9.01,
         "Height": 53,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       },
       {
         "Interests": [
@@ -969,14 +340,15 @@
         "Age": 40,
         "Weight": 55.93,
         "Height": 152,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Pets": []
   },
   {
-    "Id" : 8,
-    "Photo" : "default.png",
+    "Id": 8,
+    "Photo": "default.png",
     "StreetName": "Hazlett Avenue",
     "HouseNumber": 1,
     "Adults": [
@@ -993,7 +365,8 @@
         "Age": 33,
         "Weight": 55.4,
         "Height": 171,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       }
     ],
     "Children": [
@@ -1025,7 +398,8 @@
         "Age": 2,
         "Weight": 16.6,
         "Height": 78,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -1043,7 +417,8 @@
         "Age": 13,
         "Weight": 24.14,
         "Height": 137,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       },
       {
         "Interests": [
@@ -1069,7 +444,8 @@
         "Age": 13,
         "Weight": 48.2,
         "Height": 133,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -1095,7 +471,8 @@
         "Age": 4,
         "Weight": 40.8,
         "Height": 117,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       },
       {
         "Interests": [
@@ -1133,14 +510,15 @@
         "Age": 15,
         "Weight": 94.2,
         "Height": 160,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       }
     ],
     "Pets": []
   },
   {
-    "Id" : 9,
-    "Photo" : "default.png",
+    "Id": 9,
+    "Photo": "default.png",
     "StreetName": "Easy Street",
     "HouseNumber": 1,
     "Adults": [
@@ -1157,7 +535,8 @@
         "Age": 44,
         "Weight": 81.8,
         "Height": 172,
-        "Sex": "M"
+        "Sex": "M",
+        "Photo": null
       }
     ],
     "Children": [
@@ -1201,7 +580,8 @@
         "Age": 13,
         "Weight": 45.73,
         "Height": 157,
-        "Sex": "F"
+        "Sex": "F",
+        "Photo": null
       }
     ],
     "Pets": []

@@ -1,0 +1,78 @@
+﻿@page "/EditAdult/{IdFamily:int}/{idOfThatAdult:int}"
+@using Models
+@using FileData
+@using System.IO
+@inject NavigationManager NavigationManager
+@inject FileContext FileContext
+
+@if (adultToEdit == null)
+{
+    <div class="text-center">
+        <h1>There's no adult with this Id...</h1>
+    </div>
+}
+else
+{
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstname">First name</label>
+                <input type="text" class="form-control" id="inputFirstname" @bind-value="adultToEdit.FirstName"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputLastname">Last name</label>
+                <input type="text" class="form-control" id="inputLastname" @bind-value="adultToEdit.LastName"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputHairColor">First name</label>
+                <input type="text" class="form-control" id="inputHairColor" @bind-value="adultToEdit.HairColor"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputEyeColor">Last name</label>
+                <input type="text" class="form-control" id="inputEyeColor" @bind-value="adultToEdit.EyeColor"/>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAge">Age</label>
+                <input type="number" class="form-control col-md-2" @bind-value="adultToEdit.Age"/>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputSex">Sex</label>
+                <input type="text" class="form-control" id="inputSex" @bind-value="adultToEdit.Sex"/>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="inputJobTitle">JobTitle</label>
+                <input type="text" class="form-control" id="inputJobTitle" @bind-value="adultToEdit.JobTitle.JobTitle"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" @onclick="Save">Edit</button>
+    </form>
+}
+
+@code {
+
+    [Parameter]
+    public int idOfThatAdult { get; set; }
+
+    [Parameter]
+    public int IdFamily { get; set; }
+
+    private Adult adultToEdit;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        adultToEdit = FileContext.Families.First(f => f.Id == IdFamily).Adults.Find(a => a.Id == Id);
+    }
+
+    private void Save()
+    {
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Insert(idOfThatAdult, adultToEdit);
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamiliyInfo/{IdFamily}");
+    }
+
+}

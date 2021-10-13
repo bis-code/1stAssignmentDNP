@@ -13,6 +13,7 @@ namespace Models
         public int SecurityLevel { get; set; }
         public string Role { get; set; }
         public Family Family { get; set; }
+        public Person Person { get; set; }
     }
     
 }

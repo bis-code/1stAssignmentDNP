@@ -2,45 +2,322 @@
 @using Models
 @using FileData
 @using System.IO
+@using System.Diagnostics.Eventing.Reader
+@using System.Reflection.Metadata
 @inject FileContext FileContext
-<h3>FamilyInfo, @Id</h3>
+@inject NavigationManager NavigationManager
+<section>
+<div class="container text-center row">
+<div class="col-lg-4">
+    <div class="col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <img src="Images/Families/@_family.Photo" alt="Family photo" style="height: 100px; width: 100px"class="rounded-circle card-img-top"/>
+                <div class="card-text">
+                    <h3>Family name: @_family.Adults[0].LastName</h3>
+                    @foreach (var adult in _family.Adults)
+                    {
+                        @if (_family.Adults.IndexOf(adult) == _family.Adults.Count - 1)
+                        {
+                            <em>@adult.FirstName</em>
+                        }
+                        else
+                        {
+                            <em>@adult.FirstName and </em>
+                        }
+                    }
+                </div>
+                <ul class="list-group list-group-flush text-muted">
+                    <li class="list-group-item">Net salary @(Salary(_family.Adults.ToList()))</li>
+                    <li class="list-group-item">Children: @_family.Children.Count</li>
+                    <li class="list-group-item">Pets: @_family.Pets.Count</li>
+                </ul>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-outline-primary" @onclick="EditFamily">Edit</button>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-lg-12 text-center">
+        <button type="button" class="btn btn-outline-danger" @onclick="RemoveFamily">Remove Family</button>
+    </div>
+    <div class="col-lg-12 col-lg-12 text-center">
+        <h2>
+            <span class="badge badge-primary">Adults</span>
+        </h2>
+    </div>
+    @foreach (var adult in _family.Adults)
+    {
+        <div class="col-md-12 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="bg-white rounded-right">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">First name: @adult.FirstName</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Last name: @adult.LastName</p>
+                            </div>
+                        </div>
+                        <h3 class="mt-3 ">Information</h3>
+                        <hr class="badge-primary mt-0 w-25">
 
-@* <div class="row"> *@
-@*     <div class="col-lg-12 col-md-12"> *@
-@*         <div class="card"> *@
-@*             <div class="card-body"> *@
-@*                 <img src="Images/Families/@_family.Photo" alt="Family photo" class="img-fluid rounded-circle w-50 m-3"/> *@
-@*                 <h3>Family name: @_family.Adults[0].LastName</h3> *@
-@*                 <h5>Father: @_family.Adults.Find(a => a.Sex.Equals("M")).FirstName, and @_family.Adults.Find(a => a.Sex.Equals("F")).FirstName</h5> *@
-@*                 <p>Net salary @(Salary(_family.Adults.ToList())) </p> *@
-@*             </div> *@
-@*         </div> *@
-@*     </div> *@
-@* </div> *@
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Hair color: @adult.HairColor</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Eye color: @adult.EyeColor</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Weight: @adult.Weight</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Height: @adult.Height</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Sex: @adult.Sex</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditAdult(_family.Id))">Edit</button>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
 
-@code {
+        </div>
 
+        <br/>
+    }
+</div>
+
+
+<div class="col-lg-4">
+    <div class="col-lg-12 col-lg-12 text-center">
+        <h2>
+            <span class="badge badge-primary">Children</span>
+        </h2>
+    </div>
+    @foreach (var child in _family.Children)
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-text">
+                        <em>
+
+                            @foreach (var interest in child.Interests)
+                            {
+                                <p>
+                                    @interest.Description<br/>
+                                </p>
+                            }
+                        </em>
+                    </div>
+                    <div class="bg-white rounded-right">
+                        <h3 class="mt-3 ">Information</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">First name: @child.FirstName</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Last name: @child.LastName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Hair color: @child.HairColor</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Eye color: @child.EyeColor</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Weight: @child.Weight</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Height: @child.Height</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <p class="font-weight-bold">Sex: @child.Sex</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditChild(child.Id))">Edit</button>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
+        </div>
+        <br/>
+    }
+</div>
+
+<div class="col-lg-4">
+    <div class="col-lg-12 col-lg-12 text-center">
+        <h2>
+            <span class="badge badge-primary">Pets</span>
+        </h2>
+    </div>
+    @foreach (var pet in _family.Pets)
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+            <div class="card">
+                <div class="card-body">
+                    <div class="col-lg-12">
+                        <p class="font-weight-bold">Name: @pet.Name</p>
+                    </div>
+                    <div class="bg-white rounded-right">
+                        <h3 class="mt-3 ">Information</h3>
+                        <hr class="badge-primary mt-0 w-25">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Specie: @pet.Species</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="font-weight-bold">Age: @pet.Age</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                    </div>
+                    <div class="col-lg-6"></div>
+                </div>
+            </div>
+        </div>
+        <br/>
+    }
+    <div class="col-lg-12 col-lg-12 text-center">
+        <h2>
+            <span class="badge badge-priamry">Children's Pets</span>
+        </h2>
+    </div>
+    @foreach (var child in _family.Children)
+    {
+        @if (child.Pets.Count > 0)
+        {
+            @foreach (var pet in child.Pets)
+            {
+                <div class="col-lg-12 col-lg-12 text-center">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-lg-12">
+                                <p class="text-muted">@child.FirstName's pet</p>
+                            </div>
+                            <div class="col-lg-12">
+                                <p class="font-weight-bold">Name: @pet.Name</p>
+                            </div>
+                            <div class="bg-white rounded-right">
+                                <h3 class="mt-3 ">Information</h3>
+                                <hr class="badge-primary mt-0 w-25">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <p class="font-weight-bold">Specie: @pet.Species</p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <p class="font-weight-bold">Age: @pet.Age</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <button type="button" class="btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                            </div>
+                            <div class="col-lg-6"></div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+            }
+        }
+        else
+        {
+            <div class="col-lg-12">
+                <p class="text-muted">No pets for @child.FirstName</p>
+            </div>
+        }
+    }
+</div>
+</div>
+
+</section>
+
+@code
+{
     [Parameter]
     public int Id { get; set; }
 
     private Family _family;
 
 
-    // protected override Task OnInitializedAsync()
-    // {
-    //     base.OnInitialized();
-    //     _family = FileContext.Families.First(f => f.Id == Id);
-    // }
-    //
-    // private int Salary(List<Adult> adults)
-    // {
-    //     int sum = 0;
-    //     foreach (var vAdult in adults)
-    //     {
-    //         sum += vAdult.JobTitle.Salary;
-    //     }
-    //
-    //     return sum;
-    // }
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        _family = FileContext.Families.FirstOrDefault(f => f.Id == Id);
+    }
 
+    private int Salary(List<Adult> adults)
+    {
+        int sum = 0;
+        foreach (var vAdult in adults)
+        {
+            sum += vAdult.JobTitle.Salary;
+        }
+
+        return sum;
+    }
+
+    private void RemoveFamily()
+    {
+        FileContext.Families.Remove(_family);
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo("/Families");
+    }
+
+    private void EditFamily()
+    {
+        NavigationManager.NavigateTo($"/EditFamily/{Id}");
+    }
+
+    private void EditAdult(int IdFamily)
+    {
+        try
+        {
+            int idOfThatAdult = FileContext.Families.First(f => f.Id == IdFamily).Adults[Id].Id;
+            NavigationManager.NavigateTo($"/EditAdult/{IdFamily}/{idOfThatAdult}");
+        }
+        catch (Exception e)
+        {
+            
+        }
+    }
+
+    private void EditChild(int Id)
+    {
+        NavigationManager.NavigateTo($"/EditChild/{Id}");
+    }
+
+    private void EditPet(int Id)
+    {
+        NavigationManager.NavigateTo($"/EditPet/{Id}");
+    }
 }

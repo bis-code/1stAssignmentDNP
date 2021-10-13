@@ -28,6 +28,34 @@
                                 <p class="font-weight-bold">Last name: @_user.LastName</p>
                             </div>
                         </div>
+                        @if (_user.Person != null)
+                        {
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Hair color: @_user.Person.HairColor</p>
+                                </div>
+                                <div class="col-sm-6">
+                                    <p class="font-weight-bold">Eye color: @_user.Person.EyeColor</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <p class="font-weight-bold">Weight: @_user.Person.Weight</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p class="font-weight-bold">Height: @_user.Person.Height</p>
+                                </div>
+                                <div class="col-sm-4">
+                                    <p class="font-weight-bold">Sex: @_user.Person.Sex</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-12">
+                                No IRL Informations given..
+                            </div>
+                        }
                         @if (_user.Role.Equals("Admin"))
                         {
                             <div class="col-sm-6">
@@ -45,7 +73,6 @@
                             <h4 class="mt-3">Family Info</h4>
                             <hr class="bg-primary">
                             <div class="row">
-
                             </div>
                         }
                         else if (_user.Family == null)
@@ -75,9 +102,9 @@
         _user = UsersData.GetUsers().First(u => u.Username.Equals(username));
     }
 
-    private void AddFamilyToUser(int userID)
+    private void AddFamilyToUser(int Id)
     {
-        NavigationManager.NavigateTo($"/AddFamily/{userID}");
+        NavigationManager.NavigateTo($"/AddFamily/{Id}");
     }
 
 }

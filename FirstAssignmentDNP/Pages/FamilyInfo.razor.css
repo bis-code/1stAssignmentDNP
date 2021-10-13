@@ -1,0 +1,9 @@
+card:hover {
+    border-color: #4ca1af;
+    transition: .7s;
+    
+}
+
+section {
+    position: center;
+}

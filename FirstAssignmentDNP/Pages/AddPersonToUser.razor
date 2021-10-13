@@ -1,0 +1,70 @@
+﻿@page "/AddPersonToUser/{Id:int}"
+@using FirstAssignmentDNP.Data
+@using Models
+@inject IUsersData UsersData
+@inject NavigationManager NavigationManager
+
+<div class="container text-center">
+  <h3>Add Person To User</h3>
+  <div class="input-group">
+    <span class="input-group-text">Hair and eye color</span>
+    <input type="text" placeholder="Hair color" class="form-control" @bind-value="_person.HairColor"/>
+    <input type="text" placeholder="Eye color" class="form-control"@bind-value="_person.EyeColor"/>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text">Age</span>
+    <input type="number" class="form-control" @bind-value="_person.Age"/>
+    <span class="input-group-text">years</span>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-text">Weight and height</span>
+    <input type="number" placeholder="Weight" class="form-control" @bind-value="_person.Weight"/>
+    <input type="number" placeholder="Height" class="form-control" @bind-value="_person.Height"/>
+  </div>
+  <div class="input-group">
+    <input type="text" class="form-control" @bind-value="_person.Sex"/>
+  </div>
+  <div class="input-group">
+    <button class="btn btn-primary btn-sm" @onclick="AddPerson">Add</button>
+  </div>
+  <div style="color:red">
+    @errorMessage
+  </div>
+  @* <div class="input-group"> *@
+  @*     <input type="text" id="typeImage" class="form-control" @bind-value="_person.ImageName"/> *@
+  @*     <label class="form-label" for="typeImage">Sex</label> *@
+  @*   </div> to be updated  *@
+
+</div>
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    private Person _person = new Person();
+  private User _user;
+    private string errorMessage;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+      _user = UsersData.Get(Id);
+    }
+
+  public void AddPerson()
+  {
+    errorMessage = "";
+    try
+    {
+      _person.FirstName = _user.FirstName;
+      _person.LastName = _user.LastName;
+      _person.Id = _user.Id;
+      UsersData.AddPersonToUser(_person, Id);
+      NavigationManager.NavigateTo($"/Profile/{_user.Username}");
+    }
+    catch (Exception e)
+    {
+      errorMessage = e.Message;
+    }
+    
+  }
+}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
@@ -47,13 +48,15 @@ namespace FirstAssignmentDNP.Data
                 }
             }.ToList();
         }
-        
+
         public void AddUser(User user)
         {
             int max = users.Max(user => user.Id);
             user.Id = (++max);
             user.Family = null;
+            user.Person = null;
             user.Role = "Member";
+            user.Photo = "default.png";
             user.SecurityLevel = 0;
             users.Add(user);
             WriteUsersToFile();
@@ -64,6 +67,7 @@ namespace FirstAssignmentDNP.Data
             List<User> tmp = new List<User>(users);
             return tmp;
         }
+
         public void RemoveUser(int userID)
         {
             User toRemove = users.First(u => u.Id == userID);
@@ -80,6 +84,7 @@ namespace FirstAssignmentDNP.Data
             toUpdate.SecurityLevel = user.SecurityLevel;
             toUpdate.Password = user.Password;
             toUpdate.Family = user.Family;
+            toUpdate.Person = user.Person;
             WriteUsersToFile();
         }
 
@@ -92,11 +97,30 @@ namespace FirstAssignmentDNP.Data
         {
             return users.FirstOrDefault(u => u.Username.Equals(username));
         }
+
         public void AddFamilyToUser(Family family, int userId)
         {
             User toUpdate = users.First(u => u.Id == userId);
             toUpdate.Family = family;
             WriteUsersToFile();
+        }
+
+        public void AddPersonToUser(Person person, int userId)
+        {
+            if (!CredentialsForColor(person.HairColor) || !CredentialsForColor(person.EyeColor))
+                throw new Exception("Color required: Dark/Blue/Grey/Blond/Brown.");
+            User toUpdate = users.First(u => u.Id == userId);
+            person.Photo = toUpdate.Photo;
+            toUpdate.Person = person;
+            WriteUsersToFile();
+        }
+
+        private bool CredentialsForColor(string color)
+        {
+            if (color.Equals("Grey") || color.Equals("Blue") || color.Equals("Dark") ||
+                color.Equals("Blond") || color.Equals("Brown"))
+                return true;
+            return false;
         }
 
         private void WriteUsersToFile()

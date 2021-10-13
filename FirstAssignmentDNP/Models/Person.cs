@@ -1,4 +1,6 @@
+using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace Models {
 public class Person {
@@ -12,7 +14,7 @@ public class Person {
     public float Weight { get; set; }
     public int Height { get; set; }
     public string Sex { get; set; }
-    public string ImageName { get; set; }
+    public string Photo { get; set; }
 }
 
 

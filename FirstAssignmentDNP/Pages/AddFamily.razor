@@ -1,0 +1,39 @@
+﻿@page "/AddFamily/{Id:int}"
+@using Models
+@using FirstAssignmentDNP.Data
+@inject IUsersData UsersData
+@inject NavigationManager NavigationManager
+
+@if (_user.Person == null)
+{
+    <div class="text-center">
+        <h1>You don't have all your informations given.</h1>
+        <h1>Would you like to add?</h1>
+        <button class="btn btn-primary" @onclick="AddPersonToUser">Add</button>
+    </div>
+}
+else
+{
+    
+}
+@code {
+    [Parameter] 
+    public int Id { get; set; }
+
+    private User _user;
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitializedAsync();
+        _user = UsersData.Get(Id);
+
+    }
+
+    public async Task AddPersonToUser()
+    {
+        NavigationManager.NavigateTo($"/AddPersonToUser/{Id}");
+    }
+    
+    
+
+}
