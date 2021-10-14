@@ -16,9 +16,8 @@
 }
 else
 {
-    <form>
-    
-            <div class="form-group col-md-6">
+    <EditForm Model="@_family">
+        <div class="form-group col-md-6">
                 <label for="inputNumber">House Number</label>
                 <input type="number" id="inputNumber" class="form-control col-md-2" @bind-value="_family.HouseNumber"/>
             </div>
@@ -26,8 +25,8 @@ else
                         <label for="inputStreetName">Street Name</label>
                         <input type="text" class="form-control" id="inputStreetName" @bind-value="_family.StreetName"/>
                     </div>
-        <button type="submit" class="btn btn-primary" @onclick="AddFamilyToUser">Edit</button>
-    </form>
+        <button type="submit" class="btn btn-primary" @onclick="AddFamilyToUser">Add</button>
+    </EditForm>
 }
 @code {
     [Parameter] 
@@ -50,7 +49,7 @@ else
         _family.Pets = new List<Pet>();
         UsersData.AddFamilyToUser(_family, Id);
         FileContext.AddFamily(_family);
-        NavigationManager.NavigateTo("/");
+        NavigationManager.NavigateTo("/Families");
     }
 
     public void AddPersonToUser()
