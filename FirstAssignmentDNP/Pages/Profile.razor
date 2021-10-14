@@ -3,85 +3,125 @@
 @using FirstAssignmentDNP.Data
 @inject IUsersData UsersData
 @inject NavigationManager NavigationManager
-<div>
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="col-md-10 mt-5 pt-5">
-                <div class="row z-depth-3">
-                    <div class="col-sm-4 bg-info rounded-left">
-                        <div class="card-block text-center text-white">
-                            <i class="fas fa-user-tie fa-7x mt-5"></i>
-                            <h2 class="font-weight-bold mt-4">@_user.Username</h2>
-                            <p>Profile info</p>
-                            <img src="Images/Users/@_user.Photo" alt="Profile photo" style="width: 60px; height: 60px;" class="rounded-circle">
-                            <i class="far fa-edit-tie fa-2x mb-5"></i>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 mt-5 pt-5">
+            <div class="row z-depth-3">
+                <div class="col-sm-4 bg-info rounded-left">
+                    <div class="card-block text-center text-white">
+                        <i class="fas fa-user-tie fa-7x mt-5"></i>
+                        <h2 class="font-weight-bold mt-4">@_user.Username</h2>
+                        <p>Profile info</p>
+                        <img src="Images/Users/@_user.Photo" alt="Profile photo" style="width: 60px; height: 60px;" class="rounded-circle">
+                        <i class="far fa-edit-tie fa-2x mb-5"></i>
+                    </div>
+                </div>
+                <div class="col-sm-8 bg-white rounded-right">
+                    <h3 class="mt-3 text-center">Information</h3>
+                    <hr class="badge-primary mt-0 w-25">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">First name: @_user.FirstName</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="font-weight-bold">Last name: @_user.LastName</p>
                         </div>
                     </div>
-                    <div class="col-sm-8 bg-white rounded-right">
-                        <h3 class="mt-3 text-center">Information</h3>
-                        <hr class="badge-primary mt-0 w-25">
+                    @if (_user.Person != null)
+                    {
                         <div class="row">
                             <div class="col-sm-6">
-                                <p class="font-weight-bold">First name: @_user.FirstName</p>
+                                <p class="font-weight-bold">Hair color: @_user.Person.HairColor</p>
                             </div>
                             <div class="col-sm-6">
-                                <p class="font-weight-bold">Last name: @_user.LastName</p>
+                                <p class="font-weight-bold">Eye color: @_user.Person.EyeColor</p>
                             </div>
                         </div>
-                        @if (_user.Person != null)
-                        {
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <p class="font-weight-bold">Hair color: @_user.Person.HairColor</p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <p class="font-weight-bold">Eye color: @_user.Person.EyeColor</p>
-                                </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold">Weight: @_user.Person.Weight</p>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <p class="font-weight-bold">Weight: @_user.Person.Weight</p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <p class="font-weight-bold">Height: @_user.Person.Height</p>
-                                </div>
-                                <div class="col-sm-4">
-                                    <p class="font-weight-bold">Sex: @_user.Person.Sex</p>
-                                </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold">Height: @_user.Person.Height</p>
                             </div>
-                        }
-                        else
-                        {
-                            <div class="col-sm-12">
-                                No IRL Informations given..
+                            <div class="col-sm-4">
+                                <p class="font-weight-bold">Sex: @_user.Person.Sex</p>
                             </div>
-                        }
-                        @if (_user.Role.Equals("Admin"))
-                        {
-                            <div class="col-sm-6">
-                                 <p class="btn btn-warning btn-sm">@_user.Role level @_user.SecurityLevel</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-12">
+                            No IRL Informations given..
+                        </div>
+                    }
+                    @if (_user.Role.Equals("Admin"))
+                    {
+                        <div class="col-sm-6">
+                            <p class="btn btn-warning btn-sm">@_user.Role level @_user.SecurityLevel</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-6">
+                            <p class="btn btn-info btn-sm">@_user.Role</p>
+                        </div>
+                    }
+                    @if (_user.Family != null)
+                    {
+                        <h4 class="mt-3">Family Info</h4>
+                        <hr class="bg-primary">
+                        <img src="Images/Families/@_user.Family.Photo" alt="Family photo" style="width: 45px; height: 45px;"/>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <p class="font-weight-lighter">Id: @_user.Family.Id </p>
                             </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-lighter">HouseNumber: @_user.Family.HouseNumber</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <p class="font-weight-lighter">StreetNumber: @_user.Family.StreetName</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                @if (_user.Family.Adults.Count > 0)
+                                {
+                                    <p class="font-weight-bold">Adults: @_user.Family.Adults.Count</p>
                                 }
-                        else
-                        {
-                            <div class="col-sm-6">
-                                <p class="btn btn-info btn-sm">@_user.Role</p>
-                            </div>
+                                else
+                                {
+                                    <p class="text-muted">No adults</p>
                                 }
-                        @if (_user.Family != null)
-                        {
-                            <h4 class="mt-3">Family Info</h4>
-                            <hr class="bg-primary">
-                            <div class="row">
                             </div>
-                        }
-                        else if (_user.Family == null)
-                        {
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
+                                @if (_user.Family.Children.Count > 0)
+                                {
+                                    <p class="font-weight-bold">Children: @_user.Family.Children.Count</p>
+                                }
+                                else
+                                {
+                                    <p class="text-muted">No children</p>
+                                }
+                            </div>
+                            <div class="col-sm-4">
+                                                        @if (_user.Family.Pets.Count > 0)
+                                                        {
+                                                            <p class="font-weight-bold">Pets: @_user.Family.Pets.Count</p>
+                                                        }
+                                                        else
+                                                        {
+                                                            <p class="text-muted">No pets</p>
+                                                        }
+                                                    </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-sm-6">
                             <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => AddFamilyToUser(_user.Id))"> Add Family</button>
                         </div>
-                        }
-                    </div>
+                    }
                 </div>
             </div>
         </div>

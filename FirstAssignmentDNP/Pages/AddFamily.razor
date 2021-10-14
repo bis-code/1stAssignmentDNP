@@ -48,6 +48,7 @@ else
         _family.Photo = "default.png";
         _family.Children = new List<Child>();
         _family.Pets = new List<Pet>();
+        UsersData.AddFamilyToUser(_family, Id);
         FileContext.AddFamily(_family);
         NavigationManager.NavigateTo("/");
     }

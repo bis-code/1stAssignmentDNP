@@ -14,7 +14,14 @@
             <div class="card-body">
                 <img src="Images/Families/@_family.Photo" alt="Family photo" style="height: 100px; width: 100px"class="rounded-circle card-img-top"/>
                 <div class="card-text">
-                    <h3>Family name: @_family.Adults[0].LastName</h3>
+                    @if (_family.Adults.Count > 0)
+                    {
+                        <h3>Family name: @_family.Adults[0].LastName</h3>
+                    }
+                    else
+                    {
+                        <p>*Family name: No information of adults given...*</p>
+                    }
                     @foreach (var adult in _family.Adults)
                     {
                         @if (_family.Adults.IndexOf(adult) == _family.Adults.Count - 1)
@@ -28,9 +35,46 @@
                     }
                 </div>
                 <ul class="list-group list-group-flush text-muted">
-                    <li class="list-group-item">Net salary @(Salary(_family.Adults.ToList()))</li>
-                    <li class="list-group-item">Children: @_family.Children.Count</li>
-                    <li class="list-group-item">Pets: @_family.Pets.Count</li>
+                    <li class="list-group-item">
+                        @if (_family.Adults.Count > 0)
+                        {
+                            <p>
+                                 Net salary @(Salary(_family.Adults.ToList()))
+                            </p>
+                        }
+                        else
+                        {
+                            <p>Net salary - no information...</p>
+                        }
+                    </li>
+                    <li class="list-group-item">
+                        @if (_family.Children.Count > 0)
+                        {
+                            <p>
+                                Children: @_family.Children.Count
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                No children..
+                            </p>
+                        }
+                    </li>
+                    <li class="list-group-item">
+                        @if (_family.Pets.Count > 0)
+                        {
+                            <p>
+                                Pets: @_family.Pets.Count
+                            </p>
+                        }
+                        else
+                        {
+                            <p>
+                                No pets..
+                            </p>
+                        }
+                    </li>
                 </ul>
                 <div class="row">
                     <div class="col-lg-6">
@@ -44,221 +88,288 @@
     <div class="col-lg-12 col-lg-12 text-center">
         <button type="button" class="btn btn-outline-danger" @onclick="RemoveFamily">Remove Family</button>
     </div>
-    <div class="col-lg-12 col-lg-12 text-center">
-        <h2>
-            <span class="badge badge-primary">Adults</span>
-        </h2>
-    </div>
-    @foreach (var adult in _family.Adults)
-    {
-        <div class="col-md-12 col-sm-12">
-            <div class="card">
-                <div class="card-body">
-                    <div class="bg-white rounded-right">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">First name: @adult.FirstName</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Last name: @adult.LastName</p>
-                            </div>
-                        </div>
-                        <h3 class="mt-3 ">Information</h3>
-                        <hr class="badge-primary mt-0 w-25">
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Hair color: @adult.HairColor</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Eye color: @adult.EyeColor</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Weight: @adult.Weight</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Height: @adult.Height</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Sex: @adult.Sex</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditAdult(_family.Adults.IndexOf(adult),_family.Id))">Edit</button>
-                    </div>
-                    <div class="col-lg-6"></div>
-                </div>
-            </div>
-
-        </div>
-
-        <br/>
-    }
-</div>
-
-
-<div class="col-lg-4">
-    <div class="col-lg-12 col-lg-12 text-center">
-        <h2>
-            <span class="badge badge-primary">Children</span>
-        </h2>
-    </div>
-    @foreach (var child in _family.Children)
+    @if (_family.Adults.Count > 0)
     {
         <div class="col-lg-12 col-lg-12 text-center">
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-text">
-                        <em>
-
-                            @foreach (var interest in child.Interests)
-                            {
-                                <p>
-                                    @interest.Description<br/>
-                                </p>
-                            }
-                        </em>
-                    </div>
-                    <div class="bg-white rounded-right">
-                        <h3 class="mt-3 ">Information</h3>
-                        <hr class="badge-primary mt-0 w-25">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">First name: @child.FirstName</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Last name: @child.LastName</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Hair color: @child.HairColor</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Eye color: @child.EyeColor</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Weight: @child.Weight</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Height: @child.Height</p>
-                            </div>
-                            <div class="col-lg-4">
-                                <p class="font-weight-bold">Sex: @child.Sex</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditChild(child.Id))">Edit</button>
-                    </div>
-                    <div class="col-lg-6"></div>
-                </div>
-            </div>
+            <h2>
+                <span class="badge badge-primary">Adults</span>
+            </h2>
         </div>
-        <br/>
-    }
-</div>
-
-<div class="col-lg-4">
-    <div class="col-lg-12 col-lg-12 text-center">
-        <h2>
-            <span class="badge badge-primary">Pets</span>
-        </h2>
-    </div>
-    @foreach (var pet in _family.Pets)
-    {
-        <div class="col-lg-12 col-lg-12 text-center">
-            <div class="card">
-                <div class="card-body">
-                    <div class="col-lg-12">
-                        <p class="font-weight-bold">Name: @pet.Name</p>
-                    </div>
-                    <div class="bg-white rounded-right">
-                        <h3 class="mt-3 ">Information</h3>
-                        <hr class="badge-primary mt-0 w-25">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Specie: @pet.Species</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <p class="font-weight-bold">Age: @pet.Age</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
-                    </div>
-                    <div class="col-lg-6"></div>
-                </div>
-            </div>
-        </div>
-        <br/>
-    }
-    <div class="col-lg-12 col-lg-12 text-center">
-        <h2>
-            <span class="badge badge-priamry">Children's Pets</span>
-        </h2>
-    </div>
-    @foreach (var child in _family.Children)
-    {
-        @if (child.Pets.Count > 0)
+        @foreach (var adult in _family.Adults)
         {
-            @foreach (var pet in child.Pets)
-            {
-                <div class="col-lg-12 col-lg-12 text-center">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-lg-12">
-                                <p class="text-muted">@child.FirstName's pet</p>
+            <div class="col-md-12 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="bg-white rounded-right">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">First name: @adult.FirstName</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Last name: @adult.LastName</p>
+                                </div>
                             </div>
-                            <div class="col-lg-12">
-                                <p class="font-weight-bold">Name: @pet.Name</p>
+                            <h3 class="mt-3 ">Information</h3>
+                            <hr class="badge-primary mt-0 w-25">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Hair color: @adult.HairColor</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Eye color: @adult.EyeColor</p>
+                                </div>
                             </div>
-                            <div class="bg-white rounded-right">
-                                <h3 class="mt-3 ">Information</h3>
-                                <hr class="badge-primary mt-0 w-25">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <p class="font-weight-bold">Specie: @pet.Species</p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <p class="font-weight-bold">Age: @pet.Age</p>
-                                    </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Weight: @adult.Weight</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Height: @adult.Height</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Sex: @adult.Sex</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
-                            </div>
-                            <div class="col-lg-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditAdult(_family.Adults.IndexOf(adult), _family.Id))">Edit</button>
                         </div>
+                        <div class="col-lg-6"></div>
                     </div>
                 </div>
-                <br/>
-            }
+
+            </div>
+
+            <br/>
         }
-        else
+    }
+    else
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+                    <h2>
+                        <span class="badge badge-primary">No adults yet.</span>
+                    </h2>
+                    @* <button class="btn btn-outline-primary" @onclick="AddAdult" type="button">Add</button> *@
+                </div>
+                <div class="col-lg-12 col-lg-12 text-center">
+                        <h2>
+                            <span class="badge badge-primary">No children</span>
+                        </h2>
+                        @* <button class="btn btn-outline-primary" @onclick="AddChild" type="button">Add</button> *@
+                    </div>
+                <div class="col-lg-12 col-lg-12 text-center">
+                    <h2>
+                    <span class="badge badge-primary">No pets</span>
+                    </h2>
+                    @* <button class="btn btn-outline-primary" @onclick="AddPet" type="button">Add</button> *@
+                    </div>
+    }
+</div>
+
+
+<div class="col-lg-4">
+    @if (_family.Children.Count > 0)
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+            <h2>
+                <span class="badge badge-primary">Children</span>
+            </h2>
+        </div>
+        @foreach (var child in _family.Children)
         {
-            <div class="col-lg-12">
-                <p class="text-muted">No pets for @child.FirstName</p>
+            <div class="col-lg-12 col-lg-12 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            <em>
+                                @if (child.Interests.Count > 0)
+                                {
+                                    @foreach (var interest in child.Interests)
+                                    {
+                                        <p>
+                                            @interest.Description<br/>
+                                        </p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>
+                                        No interests. Add one?
+                                         @* <button class="btn btn-outline-primary" @onclick="AddInterestForChild" type="button">Add</button> *@
+                                    </p>
+                                }
+                            </em>
+                        </div>
+                        <div class="bg-white rounded-right">
+                            <h3 class="mt-3 ">Information</h3>
+                            <hr class="badge-primary mt-0 w-25">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">First name: @child.FirstName</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Last name: @child.LastName</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Hair color: @child.HairColor</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Eye color: @child.EyeColor</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Weight: @child.Weight</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Height: @child.Height</p>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="font-weight-bold">Sex: @child.Sex</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditChild(child.Id))">Edit</button>
+                        </div>
+                        <div class="col-lg-6"></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        }
+    }
+    else
+    {
+        if (_family.Adults.Count > 0)
+        {
+            <div class="col-lg-12 col-lg-12 text-center">
+                <h2>
+                    <span class="badge badge-primary">No children</span>
+                </h2>
+                @* <button class="btn btn-outline-primary" @onclick="AddChild" type="button">Add</button> *@
             </div>
         }
     }
 </div>
-</div>
 
+<div class="col-lg-4">
+    @if (_family.Pets.Count > 0)
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+            <h2>
+                <span class="badge badge-primary">Pets</span>
+            </h2>
+        </div>
+        @foreach (var pet in _family.Pets)
+        {
+            <div class="col-lg-12 col-lg-12 text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-lg-12">
+                            <p class="font-weight-bold">Name: @pet.Name</p>
+                        </div>
+                        <div class="bg-white rounded-right">
+                            <h3 class="mt-3 ">Information</h3>
+                            <hr class="badge-primary mt-0 w-25">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Specie: @pet.Species</p>
+                                </div>
+                                <div class="col-lg-6">
+                                    <p class="font-weight-bold">Age: @pet.Age</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                        </div>
+                        <div class="col-lg-6"></div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        }
+    }
+    else
+    {
+        if (_family.Adults.Count > 0)
+        {
+            <div class="col-lg-12 col-lg-12 text-center">
+                <h2>
+                    <span class="badge badge-primary">No pets</span>
+                </h2>
+                @* <button class="btn btn-outline-primary" @onclick="AddPet" type="button">Add</button> *@
+            </div>
+        }
+    }
+    
+    @if (_family.Children.Count > 0)
+    {
+        <div class="col-lg-12 col-lg-12 text-center">
+            <h2>
+                <span class="badge badge-priamry">Children's Pets</span>
+            </h2>
+        </div>
+        @foreach (var child in _family.Children)
+        {
+            @if (child.Pets.Count > 0)
+            {
+                @foreach (var pet in child.Pets)
+                {
+                    <div class="col-lg-12 col-lg-12 text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="col-lg-12">
+                                    <p class="text-muted">@child.FirstName's pet</p>
+                                </div>
+                                <div class="col-lg-12">
+                                    <p class="font-weight-bold">Name: @pet.Name</p>
+                                </div>
+                                <div class="bg-white rounded-right">
+                                    <h3 class="mt-3 ">Information</h3>
+                                    <hr class="badge-primary mt-0 w-25">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <p class="font-weight-bold">Specie: @pet.Species</p>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <p class="font-weight-bold">Age: @pet.Age</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => EditPet(pet.Id))">Edit</button>
+                                </div>
+                                <div class="col-lg-6"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                }
+            }
+            else
+            {
+            <div
+            class="col-lg-12" >
+                <p class="text-muted" > No pets for @child.FirstName </p >
+                </div>
+            }
+        }
+    }
+</div>
+</div>
 </section>
 
 @code
@@ -307,7 +418,6 @@
         }
         catch (Exception e)
         {
-            
         }
     }
 
