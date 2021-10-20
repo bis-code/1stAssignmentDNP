@@ -11,7 +11,7 @@
           "Salary": 66408
         },
         "Id": 1,
-        "FirstName": "Jakob",
+        "FirstName": "DADA",
         "LastName": "Humphrey",
         "HairColor": "Black",
         "EyeColor": "Brown",
@@ -19,22 +19,6 @@
         "Weight": 64.8,
         "Height": 147,
         "Sex": "M",
-        "Photo": null
-      },
-      {
-        "JobTitle": {
-          "JobTitle": "Business Development Manager",
-          "Salary": 71456
-        },
-        "Id": 2,
-        "FirstName": "Edited",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 34,
-        "Weight": 37,
-        "Height": 145,
-        "Sex": "F",
         "Photo": null
       }
     ],
@@ -60,7 +44,7 @@
         "LastName": "Humphrey",
         "HairColor": "Black",
         "EyeColor": "Amber",
-        "Age": 10,
+        "Age": 12,
         "Weight": 35,
         "Height": 155,
         "Sex": "M",
@@ -125,122 +109,11 @@
         "Photo": null
       }
     ],
-    "Pets": []
-  },
-  {
-    "Id": 6,
-    "Photo": "default.png",
-    "StreetName": "Airport Avenue",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "Nurse",
-          "Salary": 36813
-        },
-        "Id": 11,
-        "FirstName": "Ionut",
-        "LastName": "Salt",
-        "HairColor": "Brown",
-        "EyeColor": "Grey",
-        "Age": 32,
-        "Weight": 124.2,
-        "Height": 174,
-        "Sex": "F",
-        "Photo": null
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Board Games",
-            "Description": "Boardgaming like a family"
-          },
-          {
-            "Type": "Roller Blading",
-            "Description": "Shoes with wheels"
-          },
-          {
-            "Type": "Reading",
-            "Description": "Expand your horizon "
-          }
-        ],
-        "Pets": [],
-        "Id": 21,
-        "FirstName": "Sanvi",
-        "LastName": "Salt",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 12,
-        "Weight": 27.54,
-        "Height": 152,
-        "Sex": "F",
-        "Photo": null
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Board Games",
-            "Description": "Boardgaming like a family"
-          },
-          {
-            "Type": "Fishing",
-            "Description": "Mostly just hiding from the wife"
-          }
-        ],
-        "Pets": [
-          {
-            "Id": 6,
-            "Species": "Rat",
-            "Name": "Duke",
-            "Age": 0
-          }
-        ],
-        "Id": 22,
-        "FirstName": "Ezequiel",
-        "LastName": "Salt",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 2,
-        "Weight": 18,
-        "Height": 75,
-        "Sex": "M",
-        "Photo": null
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Roller Blading",
-            "Description": "Shoes with wheels"
-          },
-          {
-            "Type": "Horseback Riding",
-            "Description": "Riding horses, on their backs, where else?"
-          },
-          {
-            "Type": "Barbie",
-            "Description": "Dolls with impossible body standards"
-          }
-        ],
-        "Pets": [],
-        "Id": 23,
-        "FirstName": "Estela",
-        "LastName": "Salt",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 14,
-        "Weight": 86.02,
-        "Height": 153,
-        "Sex": "F",
-        "Photo": null
-      }
-    ],
     "Pets": [
       {
-        "Id": 7,
-        "Species": "Cat",
-        "Name": "Chessie",
+        "Id": 1,
+        "Species": "Carrot",
+        "Name": "Idk",
         "Age": 2
       }
     ]
@@ -634,24 +507,6 @@
     "Pets": []
   },
   {
-    "Id": 17,
-    "Photo": "default.png",
-    "StreetName": "Kamjatka 14",
-    "HouseNumber": 12,
-    "Adults": [],
-    "Children": [],
-    "Pets": []
-  },
-  {
-    "Id": 18,
-    "Photo": "default.png",
-    "StreetName": "Kamtjatka",
-    "HouseNumber": 12,
-    "Adults": [],
-    "Children": [],
-    "Pets": []
-  },
-  {
     "Id": 19,
     "Photo": "default.png",
     "StreetName": "Asd",
@@ -682,6 +537,15 @@
     "Id": 22,
     "Photo": "default.png",
     "StreetName": "asds",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
+    "Id": 23,
+    "Photo": "default.png",
+    "StreetName": "sdasd",
     "HouseNumber": 12,
     "Adults": [],
     "Children": [],

@@ -1,7 +1,50 @@
 ﻿@page "/EditFamily/{Id:int}"
-<h3>EditFamily, @Id</h3>
+@using Models
+@using FileData
+@using Microsoft.AspNetCore.Components
+@inject FileContext FileContext
+@inject NavigationManager NavigationManager
+@if (familyToEdit == null)
+{
+    <div class="text-center">
+        <h1>There's no family with this Id...</h1>
+    </div>
+}
+else
+{
+    <EditForm Model="@familyToEdit">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstname">First name</label>
+                <input type="text" class="form-control" id="inputFirstname" @bind-value="familyToEdit.StreetName"/>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputLastname">Last name</label>
+                <input type="text" class="form-control" id="inputLastname" @bind-value="familyToEdit.HouseNumber"/>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" @onclick="Save">Edit</button>
+    </EditForm>
+}
 
 @code {
+
     [Parameter]
     public int Id { get; set; }
+
+    private Family familyToEdit;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        familyToEdit = FileContext.Families.First(f => f.Id == Id);
+    }
+
+    public void Save()
+    {
+        int id = FileContext.Families.IndexOf(familyToEdit);
+        FileContext.Families[id] = familyToEdit;
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamilyInfo/{Id}");
+    }
+
 }
