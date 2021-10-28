@@ -114,6 +114,28 @@ namespace WebAPI.Controllers
                     return StatusCode(500, e.Message);
                 }
             }
+            
+            [HttpPost]
+            [Route("{Id:int}")]
+            public async Task<ActionResult<Family>> AddPersonToUser([FromBody] Person person, [FromRoute] int Id)
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+
+                try
+                {
+                    Person added = await _usersData.AddPersonToUserAsync(person, Id);
+                    return Created($"/{added.Id}", added);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    return StatusCode(500, e.Message);
+                }
+            }
+            
 
     }
     }

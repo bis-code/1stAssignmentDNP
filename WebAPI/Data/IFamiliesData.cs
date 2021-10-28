@@ -11,16 +11,16 @@ namespace FirstAssignmentDNP.Data
         Task<Adult> GetAdultAsync(int IdFamily, int IdAdult);
         Task<Child> GetChildAsync(int IdFamily, int IdChild);
         Task<Pet> GetPetAsync(int IdFamily, int IdPet);
-        Task AddAdultToFamilyAsync(Family family, Adult _newAdult);
-        Task AddChildToFamilyAsync(Family family, Child _newChild);
-        Task AddFamilyAsync(Family family);
-        Task AddInterestAsync(int IdFamily, Child child, Interest interest);
-        Task AddPetForFamilyAsync(Family family, Child? child, Pet pet);
+        Task<Adult> AddAdultToFamilyAsync(Family family, Adult _newAdult);
+        Task<Child> AddChildToFamilyAsync(Family family, Child _newChild);
+        Task<Family> AddFamilyAsync(Family family);
+        Task<Interest> AddInterestAsync(int IdFamily, Child child, Interest interest);
+        Task<Pet> AddPetForFamilyAsync(Family family, Child? child, Pet pet);
 
-        Task UpdateFamilyAsync(Family family);
-        Task UpdateAdultAsync(int familyId, Adult adult);
-        Task UpdateChildAsync(int familyId, Child child);
-        Task UpdatePetAsync(int familyId, Pet pet);
+        Task<Family> UpdateFamilyAsync(Family family);
+        Task<Adult> UpdateAdultAsync(int familyId, Adult adult);
+        Task<Child> UpdateChildAsync(int familyId, Child child);
+        Task<Pet> UpdatePetAsync(int familyId, Pet pet);
         Task RemoveFamilyAsync(Family family);
         Task RemoveAdultAsync(int IdFamily, Adult adult);
         Task RemoveChildAsync(int IdFamily, Child child);
