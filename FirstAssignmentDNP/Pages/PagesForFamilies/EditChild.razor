@@ -75,13 +75,13 @@ else
 
     public void Save()
     {
-        FamiliesData.UpdateChild(IdFamily, childToEdit);
+        FamiliesData.UpdateChildAsync(IdFamily, childToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
     public void Remove()
     {
-        FamiliesData.RemoveChild(IdFamily, childToEdit);
+        FamiliesData.RemoveChildAsync(IdFamily, childToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 

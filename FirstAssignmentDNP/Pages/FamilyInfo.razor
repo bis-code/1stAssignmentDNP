@@ -403,7 +403,7 @@
 
     private void RemoveFamily()
     {
-        FamiliesData.RemoveFamily(_family);
+        FamiliesData.RemoveFamilyAsync(_family);
         NavigationManager.NavigateTo("/Families");
     }
 

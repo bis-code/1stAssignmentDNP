@@ -63,13 +63,13 @@ else
 
     public void Save()
     {
-        FamiliesData.UpdatePet(IdFamily, petToEdit);
+        FamiliesData.UpdatePetAsync(IdFamily, petToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
     
     public void Remove()
     {
-        FamiliesData.RemovePet(IdFamily, petToEdit);
+        FamiliesData.RemovePetAsync(IdFamily, petToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
