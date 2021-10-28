@@ -1,0 +1,88 @@
+﻿@page "/AddPet/{IdFamily:int}"
+@page "/AddPet/{IdFamily:int}/{IdChild:int}"
+@using Models
+@using FirstAssignmentDNP.Data
+@using FileData
+@using System.IO
+@inject IUsersData UsersData
+@inject FileContext FileContext
+@inject NavigationManager NavigationManager
+
+@if (_family == null)
+{
+    <div class="text-center">
+        <h1>This family does not exist.</h1>
+    </div>
+}
+else
+{
+    <div class="align-content-lg-center">
+        <EditForm Model="@_newPet">
+            <h3>Add Person</h3>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <span class="input-group-text">Name</span>
+                    <input type="text" placeholder="Name" class="form-control" @bind-value="_newPet.Name"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <span class="input-group-text">Species</span>
+                    <input type="text" placeholder="Species" class="form-control" @bind-value="_newPet.Species"/>
+                </div>
+                <div class="form-group col-md-4">
+                    <span class="input-group-text">Age</span>
+                    <input type="number" placeholder="Age" class="form-control" @bind-value="_newPet.Age"/>
+                </div>
+            </div>
+        <div class="form-group">
+                        <button class="btn btn-primary btn-sm" @onclick="AddPetForFamily">Add</button>
+                    </div>
+        </EditForm>
+    </div>
+}
+
+@code {
+
+    [Parameter]
+    public int IdFamily { get; set; }
+    [Parameter]
+    public int IdChild { get; set; }
+
+    private Pet _newPet = new Pet();
+    private Child _newChild = new Child();
+    private Family _family = new Family();
+    private string errorMessage;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _family = FileContext.Families.First(f => f.Id == IdFamily);
+        if (IdChild > 0)
+        {
+            _newChild = FileContext.Families.First(f => f.Id == IdFamily).Children.First(c => c.Id == IdChild);
+        }
+    }
+
+    public void AddPetForFamily()
+    {
+        int max = 0;
+        foreach (var family in FileContext.Families)
+        {
+            int currentMax = 0;
+            if (_family.Pets.Count > 0)
+                currentMax = family.Pets.Max(p => p.Id);
+            if (currentMax > max)
+                max = currentMax;
+        }
+        _newPet.Id = (++max);
+        int indexOfFamily = FileContext.Families.IndexOf(_family);
+        if (IdChild > 0)
+        {
+            int indexOfChild = FileContext.Families[indexOfFamily].Children.IndexOf(_newChild);
+            FileContext.Families[indexOfFamily].Children[indexOfChild].Pets.Add(_newPet);
+        }
+        FileContext.Families[indexOfFamily].Pets.Add(_newPet);
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+    }
+
+}
