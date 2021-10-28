@@ -4,8 +4,7 @@
 @using FirstAssignmentDNP.Data
 @using FileData
 @using System.IO
-@inject IUsersData UsersData
-@inject FileContext FileContext
+@inject IFamiliesData FamiliesData 
 @inject NavigationManager NavigationManager
 
 @if (_family == null)
@@ -49,39 +48,27 @@ else
     public int IdChild { get; set; }
 
     private Pet _newPet = new Pet();
-    private Child _newChild = new Child();
+    private Child _child = null;
     private Family _family = new Family();
     private string errorMessage;
 
     protected override async Task OnParametersSetAsync()
     {
-        _family = FileContext.Families.First(f => f.Id == IdFamily);
+        _family = await FamiliesData.GetFamilyAsync(IdFamily);
         if (IdChild > 0)
         {
-            _newChild = FileContext.Families.First(f => f.Id == IdFamily).Children.First(c => c.Id == IdChild);
+            _child = await FamiliesData.GetChildAsync(IdFamily, IdChild);
         }
     }
 
     public void AddPetForFamily()
     {
-        int max = 0;
-        foreach (var family in FileContext.Families)
+        if (_child != null)
         {
-            int currentMax = 0;
-            if (_family.Pets.Count > 0)
-                currentMax = family.Pets.Max(p => p.Id);
-            if (currentMax > max)
-                max = currentMax;
+            FamiliesData.AddPetForFamily(_family, _child, _newPet);
         }
-        _newPet.Id = (++max);
-        int indexOfFamily = FileContext.Families.IndexOf(_family);
-        if (IdChild > 0)
-        {
-            int indexOfChild = FileContext.Families[indexOfFamily].Children.IndexOf(_newChild);
-            FileContext.Families[indexOfFamily].Children[indexOfChild].Pets.Add(_newPet);
-        }
-        FileContext.Families[indexOfFamily].Pets.Add(_newPet);
-        FileContext.SaveChanges();
+        else FamiliesData.AddPetForFamily(_family, null, _newPet);
+       
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 

@@ -4,7 +4,8 @@
 @using System.IO
 @using System.Diagnostics.Eventing.Reader
 @using System.Reflection.Metadata
-@inject FileContext FileContext
+@using FirstAssignmentDNP.Data
+@inject IFamiliesData FamiliesData
 @inject NavigationManager NavigationManager
 <section>
 <div class="container text-center row">
@@ -386,7 +387,7 @@
     protected override async Task OnParametersSetAsync()
     {
         base.OnInitialized();
-        _family = FileContext.Families.FirstOrDefault(f => f.Id == Id);
+        _family = await FamiliesData.GetFamilyAsync(Id);
     }
 
     private int Salary(List<Adult> adults)
@@ -402,8 +403,7 @@
 
     private void RemoveFamily()
     {
-        FileContext.Families.Remove(_family);
-        FileContext.SaveChanges();
+        FamiliesData.RemoveFamily(_family);
         NavigationManager.NavigateTo("/Families");
     }
 

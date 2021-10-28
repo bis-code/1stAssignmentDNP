@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
+using System.Threading.Tasks;
 using FileData;
 using Models;
 
@@ -52,9 +53,9 @@ namespace FirstAssignmentDNP.Data
             }.ToList();
         }
 
-        public void AddUser(User user)
+        public async Task AddUserAsync(User user)
         {
-            var _users = GetUsers();
+            IList<User> _users =  await GetUsersAsync();
             int max = users.Max(user => user.Id);
             user.Id = (++max);
             user.Role = "Member";
@@ -67,23 +68,17 @@ namespace FirstAssignmentDNP.Data
             WriteUsersToFile();
         }
 
-        public IList<User> GetUsers()
+        public async Task<IList<User>> GetUsersAsync()
         {
             List<User> tmp = new List<User>(users);
             return tmp;
         }
 
-        public void RemoveUser(int userID)
-        {
-            User toRemove = users.First(u => u.Id == userID);
-            users.Remove(toRemove);
-            WriteUsersToFile();
-        }
-
-        public void Update(User user)
+        public async Task UpdateAsync(User user)
         {
             //to be updated
             User toUpdate = users.First(u => u.Id == user.Id);
+            if (toUpdate == null) throw new Exception($"Did not find user with id: {user.Id}");
             toUpdate.Username = user.Username;
             toUpdate.Role = user.Role;
             toUpdate.SecurityLevel = user.SecurityLevel;
@@ -93,24 +88,23 @@ namespace FirstAssignmentDNP.Data
             WriteUsersToFile();
         }
 
-        public User Get(int userID)
+        public async Task<User> GetUserAsync(int userID)
         {
             return users.FirstOrDefault(u => u.Id == userID);
         }
 
-        public User Get(string username)
+        public async Task<User> GetUserAsync(string username)
         {
             return users.FirstOrDefault(u => u.Username.Equals(username));
         }
-
-        public void AddFamilyToUser(Family family, int userId)
+        public async Task AddFamilyToUserAsync(Family family, int userId)
         {
             User toUpdate = users.First(u => u.Id == userId);
             toUpdate.Family = family;
             WriteUsersToFile();
         }
 
-        public void AddPersonToUser(Person person, int userId)
+        public async Task AddPersonToUserAsync(Person person, int userId)
         {
             if (!CredentialsForColor(person.HairColor) || !CredentialsForColor(person.EyeColor))
                 throw new Exception("Color required: Dark/Blue/Grey/Blond/Brown.");
@@ -120,11 +114,6 @@ namespace FirstAssignmentDNP.Data
             WriteUsersToFile();
         }
 
-        public void RemoveFamilyFromUser(int userId, Family family)
-        {
-            
-        }
-        
 
         private bool CredentialsForColor(string color)
         {
@@ -134,6 +123,11 @@ namespace FirstAssignmentDNP.Data
             return false;
         }
 
+        public async Task RemoveUserAsync(User user)
+        {
+            users.Remove(user);
+            WriteUsersToFile();
+        }
         private void WriteUsersToFile()
         {
             string userAsJson = JsonSerializer.Serialize(users);

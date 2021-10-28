@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using System.Threading.Tasks;
 using FirstAssignmentDNP.Data;
 using Models;
 
@@ -10,7 +11,7 @@ namespace FirstAssignmentDNP.Authentication
 {
     public class InMemUserService : IUserService
     {
-        private List<User> users;
+        private IList<User> users;
         private string usersFile = "users.json";
         private IUsersData _usersData;
 
@@ -19,9 +20,9 @@ namespace FirstAssignmentDNP.Authentication
             _usersData = usersData;
         }
 
-        public User ValidateUser(string username, string password)
+        public async Task<User> ValidateUser(string username, string password)
         {
-            users = _usersData.GetUsers().ToList();
+            users = await _usersData.GetUsersAsync();
             User first = users.FirstOrDefault(user => user.Username.Equals(username));
             
             if (first == null) throw new Exception("User not found");

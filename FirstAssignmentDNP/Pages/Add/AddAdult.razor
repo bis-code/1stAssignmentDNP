@@ -1,10 +1,7 @@
 ﻿@page "/AddAdult/{IdFamily:int}"
 @using Models
 @using FirstAssignmentDNP.Data
-@using FileData
-@using System.IO
-@inject IUsersData UsersData
-@inject FileContext FileContext
+@inject IFamiliesData FamiliesData
 @inject NavigationManager NavigationManager
 
 @if (_family == null)
@@ -70,7 +67,7 @@ else
                </div>
            </div>
            <div class="form-group">
-               <button class="btn btn-primary btn-sm" @onclick="AddPersonToFamily">Add</button>
+               <button class="btn btn-primary btn-sm" @onclick="AddAdultToFamily">Add</button>
            </div>
            <div style="color:red">
                @errorMessage
@@ -88,27 +85,14 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        _family = FileContext.Families.First(f => f.Id == IdFamily);
+        _family = await FamiliesData.GetFamilyAsync(IdFamily);
     }
 
-    public void AddPersonToFamily()
+    public void AddAdultToFamily()
     {
-        
-            int max = 0;
-            foreach (var family in FileContext.Families)
-            {
-                int currentMax = 0;
-                if(_family.Adults.Count > 0)
-                    currentMax = family.Adults.Max(a => a.Id);
-                if (currentMax > max)
-                    max = currentMax;
-            }
-            _newAdult.Id = (++max);
-            _newAdult.Photo = "default.png";
-            int indexOfFamily = FileContext.Families.IndexOf(_family);
-            FileContext.Families[indexOfFamily].Adults.Add(_newAdult);
-            FileContext.SaveChanges();
-            NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+
+        FamiliesData.AddAdultToFamilyAsync(_family, _newAdult);
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
         
     }
 
