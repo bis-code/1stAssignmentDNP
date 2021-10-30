@@ -12,5 +12,7 @@ namespace FirstAssignmentDNP.Data
         Task AddPersonToUserAsync(Person person, int userId);
         Task<User> GetUserAsync(int userID);
         Task<User> GetUserAsync(string username);
+        Task UpdateAsync(User user);
+        Task RemoveUserAsync(User user);
     }
 }
