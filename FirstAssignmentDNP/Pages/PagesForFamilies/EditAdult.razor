@@ -3,9 +3,8 @@
 @using FileData
 @using System.IO
 @using System.Security.AccessControl
-@using FirstAssignmentDNP.Data
 @inject NavigationManager NavigationManager
-@inject IFamiliesData familiesData
+@inject FileContext FileContext
 
 @if (adultToEdit == null)
 {
@@ -68,18 +67,22 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        adultToEdit = await familiesData.GetAdultAsync(IdFamily, idOfThatAdult);
+        adultToEdit = FileContext.Families.First(f => f.Id == IdFamily).Adults.Find(a => a.Id == idOfThatAdult);
     }
 
     public void Save()
     {
-        familiesData.UpdateAdult(IdFamily, adultToEdit);
+        int id = FileContext.Families.First(f => f.Id == IdFamily).Adults.IndexOf(adultToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(FileContext.Families.First(f => f.Id == IdFamily).Adults[id]);
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Add(adultToEdit);
+        FileContext.SaveChanges();
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
     public void Remove()
     {
-        familiesData.RemoveAdult(IdFamily, adultToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(adultToEdit);
+        FileContext.SaveChanges();
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 }

@@ -1,9 +1,8 @@
 ﻿@page "/AddInterest/{IdFamily:int}/{ChildId:int}"
 @using Models
 @using FileData
-@using FirstAssignmentDNP.Data
 @using Microsoft.AspNetCore.Components
-@inject IFamiliesData FamiliesData
+@inject FileContext FileContext
 @inject NavigationManager NavigationManager
 @if (_child == null)
 {
@@ -39,12 +38,16 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        _child = await FamiliesData.GetChildAsync(IdFamily, ChildId);
+        _child = FileContext.Families.First(f => f.Id == IdFamily).Children.First(c => c.Id == ChildId);
     }
 
     public void AddInterestToChild()
     {
-        FamiliesData.AddInterest(IdFamily, _child, _newInterest);
+        int indexOfFamily = FileContext.Families.IndexOf(FileContext.Families.First(f => f.Id == IdFamily));
+        int indexOfChild = FileContext.Families[indexOfFamily].Children.IndexOf(_child);
+
+        FileContext.Families[indexOfFamily].Children[indexOfChild].Interests.Add(_newInterest);
+        FileContext.SaveChanges();
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 

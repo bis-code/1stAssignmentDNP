@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
 using Models;
 
 namespace FirstAssignmentDNP.Data
 {
     public interface IUsersData
     {
-        Task<IList<User>> GetUsersAsync();
-        Task AddUserAsync(User user);
-        Task AddFamilyToUserAsync(Family family, int userId);
-        Task AddPersonToUserAsync(Person person, int userId);
-        Task<User> GetUserAsync(int userID);
-        Task<User> GetUserAsync(string username);
-        Task UpdateAsync(User user);
-        Task RemoveUserAsync(User user);
+        IList<User> GetUsers();
+        void AddUser(User user);
+        void AddFamilyToUser(Family family, int userId);
+        void AddPersonToUser(Person person, int userId);
+        void RemoveFamilyFromUser(int userId, Family family);
+        void RemoveUser(int userID);
+        void Update(User user);
+        User Get(int userID);
+
+        User Get(string username);
     }
 }

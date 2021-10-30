@@ -29,6 +29,12 @@ namespace FileData
             }
         }
 
+        public void AddFamily(Family family)
+        {
+            Families.Add(family);
+            SaveChanges();
+        }
+
         public void SaveChanges()
         {
             // storing families

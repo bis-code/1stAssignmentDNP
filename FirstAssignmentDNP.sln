@@ -2,8 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstAssignmentDNP", "FirstAssignmentDNP\FirstAssignmentDNP.csproj", "{231BE903-B5BD-47BF-9AEF-20C80A5943F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{CDC6EBDA-0807-427D-96B7-BDE826F252F0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -14,9 +12,5 @@ Global
 		{231BE903-B5BD-47BF-9AEF-20C80A5943F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{231BE903-B5BD-47BF-9AEF-20C80A5943F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{231BE903-B5BD-47BF-9AEF-20C80A5943F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CDC6EBDA-0807-427D-96B7-BDE826F252F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CDC6EBDA-0807-427D-96B7-BDE826F252F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CDC6EBDA-0807-427D-96B7-BDE826F252F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CDC6EBDA-0807-427D-96B7-BDE826F252F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

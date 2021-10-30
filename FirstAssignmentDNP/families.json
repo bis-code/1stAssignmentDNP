@@ -30,18 +30,38 @@
             "Description": "Boardgaming like a family"
           },
           {
+            "Type": "Archery",
+            "Description": "Old sport with bow and arrow"
+          },
+          {
+            "Type": "Gaming",
+            "Description": "#PCMASTERRACE"
+          }
+        ],
+        "Pets": [],
+        "Id": 1,
+        "FirstName": "Frederick",
+        "LastName": "Humphrey",
+        "HairColor": "Black",
+        "EyeColor": "Amber",
+        "Age": 12,
+        "Weight": 35,
+        "Height": 155,
+        "Sex": "M",
+        "Photo": null
+      },
+      {
+        "Interests": [
+          {
+            "Type": "Board Games",
+            "Description": "Boardgaming like a family"
+          },
+          {
             "Type": "Ultimate",
             "Description": "Chasing flying saucers"
           }
         ],
-        "Pets": [
-          {
-            "Id": 2,
-            "Species": "PETP",
-            "Name": "pET ",
-            "Age": 123
-          }
-        ],
+        "Pets": [],
         "Id": 2,
         "FirstName": "Leopold",
         "LastName": "Humphrey",

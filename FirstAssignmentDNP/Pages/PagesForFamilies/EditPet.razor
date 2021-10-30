@@ -1,9 +1,8 @@
 ﻿@page "/EditPet/{IdFamily:int}/{Id:int}"
 @using FileData
-@using FirstAssignmentDNP.Data
 @using Microsoft.AspNetCore.Components
 @using Models
-@inject IFamiliesData FamiliesData
+@inject FileContext FileContext
 @inject NavigationManager NavigationManager
 @if (petToEdit == null)
 {
@@ -58,18 +57,21 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        petToEdit = await FamiliesData.GetPetAsync(IdFamily, Id);
+        petToEdit = FileContext.Families.First(f => f.Id == IdFamily).Pets.Find(c => c.Id == Id);
     }
 
     public void Save()
     {
-        FamiliesData.UpdatePet(IdFamily, petToEdit);
+        int id = FileContext.Families.First(f => f.Id == IdFamily).Pets.IndexOf(petToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Pets[id] = petToEdit;
+        FileContext.SaveChanges();
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
     
     public void Remove()
     {
-        FamiliesData.RemovePet(IdFamily, petToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Pets.Remove(petToEdit);
+        FileContext.SaveChanges();
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 

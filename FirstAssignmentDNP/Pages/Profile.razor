@@ -138,7 +138,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        _user = await UsersData.GetUserAsync(username);
+        _user = UsersData.GetUsers().First(u => u.Username.Equals(username));
     }
 
     private void AddFamilyToUser(int Id)
