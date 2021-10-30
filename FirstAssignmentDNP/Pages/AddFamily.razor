@@ -1,9 +1,8 @@
 ﻿@page "/AddFamily/{Id:int}"
 @using Models
 @using FirstAssignmentDNP.Data
-@using FileData
 @inject IUsersData UsersData
-@inject FileContext FileContext
+@inject IFamiliesData FamiliesData
 @inject NavigationManager NavigationManager
 
 @if (_user.Person == null)
@@ -37,18 +36,14 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        _user = UsersData.Get(Id);
+        _user = await UsersData.GetUserAsync(Id);
     }
 
     public void AddFamilyToUser()
     {
-        int max = FileContext.Families.Max(f => f.Id);
-        _family.Id = (++max);
-        _family.Photo = "default.png";
-        _family.Children = new List<Child>();
-        _family.Pets = new List<Pet>();
-        UsersData.AddFamilyToUser(_family, Id);
-        FileContext.AddFamily(_family);
+        
+        UsersData.AddFamilyToUserAsync(_family, Id);
+        FamiliesData.AddFamilyAsync(_family);
         NavigationManager.NavigateTo("/Families");
     }
 

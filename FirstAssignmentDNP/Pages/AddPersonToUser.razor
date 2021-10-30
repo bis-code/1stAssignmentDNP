@@ -81,7 +81,7 @@
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
-        _user = UsersData.Get(Id);
+        _user = await UsersData.GetUserAsync(Id);
     }
 
     public void AddPerson()
@@ -92,7 +92,7 @@
             _person.FirstName = _user.FirstName;
             _person.LastName = _user.LastName;
             _person.Id = _user.Id;
-            UsersData.AddPersonToUser(_person, Id);
+            UsersData.AddPersonToUserAsync(_person, Id);
             NavigationManager.NavigateTo($"/Profile/{_user.Username}");
         }
         catch (Exception e)

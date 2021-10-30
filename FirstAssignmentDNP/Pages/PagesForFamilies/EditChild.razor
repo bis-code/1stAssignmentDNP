@@ -2,7 +2,8 @@
 @using Models
 @using Microsoft.AspNetCore.Components
 @using FileData
-@inject FileContext FileContext
+@using FirstAssignmentDNP.Data
+@inject IFamiliesData FamiliesData
 @inject NavigationManager NavigationManager
 <h3>EditChild, @Id</h3>
 @if (childToEdit == null)
@@ -69,21 +70,18 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        childToEdit = FileContext.Families.First(f => f.Id == IdFamily).Children.Find(c => c.Id == Id);
+        childToEdit = await FamiliesData.GetChildAsync(IdFamily, Id);
     }
 
     public void Save()
     {
-        int id = FileContext.Families.First(f => f.Id == IdFamily).Children.IndexOf(childToEdit);
-        FileContext.Families.First(f => f.Id == IdFamily).Children[id] = childToEdit;
-        FileContext.SaveChanges();
+        FamiliesData.UpdateChildAsync(IdFamily, childToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
     public void Remove()
     {
-        FileContext.Families.First(f => f.Id == IdFamily).Children.Remove(childToEdit);
-        FileContext.SaveChanges();
+        FamiliesData.RemoveChildAsync(IdFamily, childToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 

@@ -3,7 +3,7 @@
 @using Models
 @using System.Security.Claims
 @using FirstAssignmentDNP.Data
-@inject FileContext FileContext
+@inject IFamiliesData FamiliesData
 @inject IUsersData UsersData
 @inject NavigationManager NavigationManager
 
@@ -94,7 +94,7 @@ else
 
     protected override async Task OnParametersSetAsync()
     {
-        allFamilies = FileContext.Families;
+        allFamilies = await FamiliesData.GetFamiliesAsync();
         families = allFamilies;
     }
 

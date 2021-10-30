@@ -14,7 +14,6 @@ namespace FirstAssignmentDNP.Data
     {
         private IList<User> users;
         private string usersFile = "users.json";
-        private FileContext FileContext = new FileContext();
 
         public UsersJSONData()
         {
@@ -53,7 +52,7 @@ namespace FirstAssignmentDNP.Data
             }.ToList();
         }
 
-        public async Task AddUserAsync(User user)
+        public async Task<User> AddUserAsync(User user)
         {
             IList<User> _users =  await GetUsersAsync();
             int max = users.Max(user => user.Id);
@@ -66,6 +65,7 @@ namespace FirstAssignmentDNP.Data
             _users.Add(user);
             users = _users;
             WriteUsersToFile();
+            return user;
         }
 
         public async Task<IList<User>> GetUsersAsync()
@@ -74,7 +74,7 @@ namespace FirstAssignmentDNP.Data
             return tmp;
         }
 
-        public async Task UpdateAsync(User user)
+        public async Task<User> UpdateAsync(User user)
         {
             //to be updated
             User toUpdate = users.First(u => u.Id == user.Id);
@@ -86,6 +86,7 @@ namespace FirstAssignmentDNP.Data
             toUpdate.Family = user.Family;
             toUpdate.Person = user.Person;
             WriteUsersToFile();
+            return toUpdate;
         }
 
         public async Task<User> GetUserAsync(int userID)
@@ -97,14 +98,15 @@ namespace FirstAssignmentDNP.Data
         {
             return users.FirstOrDefault(u => u.Username.Equals(username));
         }
-        public async Task AddFamilyToUserAsync(Family family, int userId)
+        public async Task<Family> AddFamilyToUserAsync(Family family, int userId)
         {
             User toUpdate = users.First(u => u.Id == userId);
             toUpdate.Family = family;
             WriteUsersToFile();
+            return family;
         }
 
-        public async Task AddPersonToUserAsync(Person person, int userId)
+        public async Task<Person> AddPersonToUserAsync(Person person, int userId)
         {
             if (!CredentialsForColor(person.HairColor) || !CredentialsForColor(person.EyeColor))
                 throw new Exception("Color required: Dark/Blue/Grey/Blond/Brown.");
@@ -112,6 +114,7 @@ namespace FirstAssignmentDNP.Data
             person.Photo = toUpdate.Photo;
             toUpdate.Person = person;
             WriteUsersToFile();
+            return person;
         }
 
 

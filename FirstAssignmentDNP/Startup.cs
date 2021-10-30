@@ -32,10 +32,9 @@ namespace FirstAssignmentDNP
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<FileContext>();
-            services.AddSingleton<UsersJSONData>();
-            services.AddSingleton<IUsersData, UsersJSONData>();
-            services.AddScoped<IUserService, InMemUserService>();
+            services.AddSingleton<IFamiliesData, CloudFamilyService>();
+            services.AddSingleton<IUsersData, CloudUserService>();
+            services.AddScoped<IUserService, CloudMemoryUserService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
         }

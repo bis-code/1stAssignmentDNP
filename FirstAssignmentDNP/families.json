@@ -1,124 +1,5 @@
 [
   {
-    "Id": 1,
-    "Photo": "default.png",
-    "StreetName": "Innovation Avenue",
-    "HouseNumber": 1,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "No job",
-          "Salary": 66408
-        },
-        "Id": 1,
-        "FirstName": "DADA",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 36,
-        "Weight": 64.8,
-        "Height": 147,
-        "Sex": "M",
-        "Photo": null
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [
-          {
-            "Type": "Board Games",
-            "Description": "Boardgaming like a family"
-          },
-          {
-            "Type": "Archery",
-            "Description": "Old sport with bow and arrow"
-          },
-          {
-            "Type": "Gaming",
-            "Description": "#PCMASTERRACE"
-          }
-        ],
-        "Pets": [],
-        "Id": 1,
-        "FirstName": "Frederick",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Amber",
-        "Age": 12,
-        "Weight": 35,
-        "Height": 155,
-        "Sex": "M",
-        "Photo": null
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Board Games",
-            "Description": "Boardgaming like a family"
-          },
-          {
-            "Type": "Ultimate",
-            "Description": "Chasing flying saucers"
-          }
-        ],
-        "Pets": [],
-        "Id": 2,
-        "FirstName": "Leopold",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Blue",
-        "Age": 6,
-        "Weight": 85.1,
-        "Height": 130,
-        "Sex": "M",
-        "Photo": null
-      },
-      {
-        "Interests": [
-          {
-            "Type": "Drawing",
-            "Description": "Or doodling"
-          },
-          {
-            "Type": "Reading",
-            "Description": "Expand your horizon "
-          },
-          {
-            "Type": "Paper Plane Flying",
-            "Description": "Just crumble a paper into a ball and throw it"
-          },
-          {
-            "Type": "Harry Potter",
-            "Description": "Slightly more narrow than book reading"
-          },
-          {
-            "Type": "Gaming",
-            "Description": "#PCMASTERRACE"
-          }
-        ],
-        "Pets": [],
-        "Id": 3,
-        "FirstName": "Chiara",
-        "LastName": "Humphrey",
-        "HairColor": "Black",
-        "EyeColor": "Brown",
-        "Age": 15,
-        "Weight": 84.405,
-        "Height": 183,
-        "Sex": "F",
-        "Photo": null
-      }
-    ],
-    "Pets": [
-      {
-        "Id": 1,
-        "Species": "Carrot",
-        "Name": "Idk",
-        "Age": 2
-      }
-    ]
-  },
-  {
     "Id": 7,
     "Photo": "default.png",
     "StreetName": "Sycamore Drive",
@@ -444,51 +325,30 @@
     "Pets": []
   },
   {
+    "Id": 10,
+    "Photo": "default.png",
+    "StreetName": "324",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
+    "Id": 11,
+    "Photo": "default.png",
+    "StreetName": "Kamtjatka",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
     "Id": 12,
     "Photo": "default.png",
     "StreetName": "Kamtjatka",
     "HouseNumber": 12,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "JobTest",
-          "Salary": 23141
-        },
-        "Id": 1,
-        "FirstName": "Das",
-        "LastName": "Baicoianu",
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 123,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [],
-        "Pets": [
-          {
-            "Id": 1,
-            "Species": "Species",
-            "Name": "Name",
-            "Age": 12
-          }
-        ],
-        "Id": 1,
-        "FirstName": "Ionut",
-        "LastName": null,
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 123,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
+    "Adults": [],
+    "Children": [],
     "Pets": []
   },
   {
@@ -537,28 +397,20 @@
     "Pets": []
   },
   {
+    "Id": 20,
+    "Photo": "default.png",
+    "StreetName": "adslk",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
     "Id": 21,
     "Photo": "default.png",
     "StreetName": "Kamtjatka",
     "HouseNumber": 12,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "TCPJob",
-          "Salary": 123251
-        },
-        "Id": 1,
-        "FirstName": "Ionut",
-        "LastName": "Baicoianu",
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 23,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
+    "Adults": [],
     "Children": [],
     "Pets": []
   },
