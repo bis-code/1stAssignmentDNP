@@ -1,7 +1,78 @@
-﻿@page "/EditPet/{Id:int}"
-<h3>EditPet, @Id</h3>
+﻿@page "/EditPet/{IdFamily:int}/{Id:int}"
+@using FileData
+@using Microsoft.AspNetCore.Components
+@using Models
+@inject FileContext FileContext
+@inject NavigationManager NavigationManager
+@if (petToEdit == null)
+{
+    <div class="text-center">
+        <h1>There's no child with this Id...</h1>
+    </div>
+}
+else
+{
+    <EditForm Model="@petToEdit">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstname">Species</label>
+                <input type="text" class="form-control" id="inputFirstname" @bind-value="petToEdit.Species"/>
+            </div>
+            <div class="form-group col-md-4">
+            </div>
+            <div class="form-group col-md-2">
+                        </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="inputAge">Name</label>
+                <input type="text" class="form-control col-md-2" @bind-value="petToEdit.Name"/>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="inputSex">Sex</label>
+                <input type="number" class="form-control" id="inputSex" @bind-value="petToEdit.Age"/>
+            </div>
+            <div class="form-group col-md-2">
+              
+            </div>
+            <div class="form-group col-md-2">
+               
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" @onclick="Save">Edit</button>
+                  <button type="submit" class="btn btn-warning" @onclick="Remove">Remove</button>
+
+    </EditForm>
+}
 
 @code {
+
+    [Parameter]
+    public int IdFamily { get; set; }
+
     [Parameter]
     public int Id { get; set; }
+
+    private Pet petToEdit;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        petToEdit = FileContext.Families.First(f => f.Id == IdFamily).Pets.Find(c => c.Id == Id);
+    }
+
+    public void Save()
+    {
+        int id = FileContext.Families.First(f => f.Id == IdFamily).Pets.IndexOf(petToEdit);
+        FileContext.Families.First(f => f.Id == IdFamily).Pets[id] = petToEdit;
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+    }
+    
+    public void Remove()
+    {
+        FileContext.Families.First(f => f.Id == IdFamily).Pets.Remove(petToEdit);
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+    }
+
 }

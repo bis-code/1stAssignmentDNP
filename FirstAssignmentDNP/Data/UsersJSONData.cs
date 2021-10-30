@@ -54,6 +54,7 @@ namespace FirstAssignmentDNP.Data
 
         public void AddUser(User user)
         {
+            var _users = GetUsers();
             int max = users.Max(user => user.Id);
             user.Id = (++max);
             user.Role = "Member";
@@ -61,7 +62,8 @@ namespace FirstAssignmentDNP.Data
             user.SecurityLevel = 0;
             user.Family = null;
             user.Person = null;
-            users.Add(user);
+            _users.Add(user);
+            users = _users;
             WriteUsersToFile();
         }
 
@@ -117,6 +119,12 @@ namespace FirstAssignmentDNP.Data
             toUpdate.Person = person;
             WriteUsersToFile();
         }
+
+        public void RemoveFamilyFromUser(int userId, Family family)
+        {
+            
+        }
+        
 
         private bool CredentialsForColor(string color)
         {

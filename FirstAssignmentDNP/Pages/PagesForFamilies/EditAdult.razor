@@ -2,6 +2,7 @@
 @using Models
 @using FileData
 @using System.IO
+@using System.Security.AccessControl
 @inject NavigationManager NavigationManager
 @inject FileContext FileContext
 
@@ -13,7 +14,7 @@
 }
 else
 {
-    <form>
+    <EditForm Model="@adultToEdit">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputFirstname">First name</label>
@@ -49,7 +50,9 @@ else
             </div>
         </div>
         <button type="submit" class="btn btn-primary" @onclick="Save">Edit</button>
-    </form>
+                  <button type="submit" class="btn btn-warning" @onclick="Remove">Remove</button>
+
+    </EditForm>
 }
 
 @code {
@@ -73,7 +76,13 @@ else
         FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(FileContext.Families.First(f => f.Id == IdFamily).Adults[id]);
         FileContext.Families.First(f => f.Id == IdFamily).Adults.Add(adultToEdit);
         FileContext.SaveChanges();
-        NavigationManager.NavigateTo("/Families");
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
+    public void Remove()
+    {
+        FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(adultToEdit);
+        FileContext.SaveChanges();
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+    }
 }

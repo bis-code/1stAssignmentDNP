@@ -71,7 +71,7 @@ else
                     </td>
                     <td>@item.Adults.Count</td>
                     <td>@item.Children.Count</td>
-                    <td>@item.Pets.Count</td>
+                    <td>@PetCount(item)</td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" @onclick="@(() => MoreInfo(@item.Id))">
                             More INFO
@@ -98,6 +98,16 @@ else
         families = allFamilies;
     }
 
+    private int PetCount(Family family)
+    {
+        int counter = 0;
+        foreach (var child in family.Children)
+        {
+            counter += child.Pets.Count;
+        }
+        counter += family.Pets.Count;
+        return counter;
+    }
     private void FilterByUserId(ChangeEventArgs changeEventArgs)
     {
         filterById = null;

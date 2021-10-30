@@ -12,15 +12,16 @@ namespace FirstAssignmentDNP.Authentication
     {
         private List<User> users;
         private string usersFile = "users.json";
-        private UsersJSONData UsersData = new UsersJSONData();
+        private IUsersData _usersData;
 
-        public InMemUserService()
+        public InMemUserService(IUsersData usersData)
         {
-            users = UsersData.GetUsers().ToList();
+            _usersData = usersData;
         }
 
         public User ValidateUser(string username, string password)
         {
+            users = _usersData.GetUsers().ToList();
             User first = users.FirstOrDefault(user => user.Username.Equals(username));
             
             if (first == null) throw new Exception("User not found");
