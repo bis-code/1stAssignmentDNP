@@ -1,0 +1,52 @@
+﻿@page "/AddInterest/{IdFamily:int}/{ChildId:int}"
+@using Models
+@using FileData
+@using FirstAssignmentDNP.Data
+@using Microsoft.AspNetCore.Components
+@inject IFamiliesData FamiliesData
+@inject NavigationManager NavigationManager
+@if (_child == null)
+{
+    <div class="text-center">
+        <h1>There's no child with this id.</h1>>
+    </div>
+}
+else
+{
+    <EditForm Model="@_newInterest">
+        <div class="form-group col-md-6">
+            <label for="inputNumber">Type</label>
+            <input type="number" id="inputNumber" class="form-control col-md-2" @bind-value="_newInterest.Type"/>
+        </div>
+        <div class="form-group col-md-4 w-50 h-50">
+            <label for="inputStreetName">Description</label>
+            <input type="text" class="form-control" id="inputStreetName" @bind-value="_newInterest.Description"/>
+        </div>
+        <button type="submit" class="btn btn-primary" @onclick="AddInterestToChild">Add</button>
+    </EditForm>
+}
+
+@code {
+
+    [Parameter]
+    public int IdFamily { get; set; }
+
+    [Parameter]
+    public int ChildId { get; set; }
+
+    private Child _child;
+    private Interest _newInterest = new Interest();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _child = await FamiliesData.GetChildAsync(IdFamily, ChildId);
+    }
+
+    public void AddInterestToChild()
+    {
+        FamiliesData.AddInterestAsync(IdFamily, _child, _newInterest);
+        NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
+    }
+
+
+}
