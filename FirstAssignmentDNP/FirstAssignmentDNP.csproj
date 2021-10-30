@@ -5,6 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Pages\Add" />
       <Folder Include="wwwroot\Images\Families" />
     </ItemGroup>
 
