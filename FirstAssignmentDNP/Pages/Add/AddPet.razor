@@ -65,9 +65,9 @@ else
     {
         if (_child != null)
         {
-            FamiliesData.AddPetForFamilyAsync(_family, _child, _newPet);
+            FamiliesData.AddPetForFamily(_family, _child, _newPet);
         }
-        else FamiliesData.AddPetForFamilyAsync(_family, null, _newPet);
+        else FamiliesData.AddPetForFamily(_family, null, _newPet);
        
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }

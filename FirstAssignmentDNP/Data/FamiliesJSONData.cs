@@ -90,7 +90,7 @@ namespace FirstAssignmentDNP.Data
             FileContext.SaveChanges();
         }
 
-        public async Task AddInterestAsync(int IdFamily, Child child, Interest interest)
+        public async Task AddInterest(int IdFamily, Child child, Interest interest)
         {
             int indexOfFamily = FileContext.Families.IndexOf(FileContext.Families.First(f => f.Id == IdFamily));
             int indexOfChild = FileContext.Families[indexOfFamily].Children.IndexOf(child);
@@ -99,7 +99,7 @@ namespace FirstAssignmentDNP.Data
             FileContext.SaveChanges();
         }
 
-        public async Task AddPetForFamilyAsync(Family family, Child? child, Pet pet)
+        public async Task AddPetForFamily(Family family, Child? child, Pet pet)
         {
             int max = 0;
             foreach (var _family in FileContext.Families)
@@ -121,53 +121,53 @@ namespace FirstAssignmentDNP.Data
             FileContext.SaveChanges();
         }
 
-        public async Task UpdateFamilyAsync(Family family)
+        public async Task UpdateFamily(Family family)
         {
             int id = FileContext.Families.IndexOf(family);
             FileContext.Families[id] = family;
             FileContext.SaveChanges();
         }
 
-        public async Task UpdateAdultAsync(int IdFamily,Adult adult)
+        public async Task UpdateAdult(int IdFamily,Adult adult)
         {
             int id = FileContext.Families.First(f => f.Id == IdFamily).Adults.IndexOf(adult);
             FileContext.Families.First(f => f.Id == IdFamily).Adults[id] = adult;
             FileContext.SaveChanges();
         }
 
-        public async Task UpdateChildAsync(int IdFamily, Child child)
+        public async Task UpdateChild(int IdFamily, Child child)
         {
             int id = FileContext.Families.First(f => f.Id == IdFamily).Children.IndexOf(child);
             FileContext.Families.First(f => f.Id == IdFamily).Children[id] = child;
             FileContext.SaveChanges();
         }
 
-        public async Task UpdatePetAsync(int IdFamily, Pet pet)
+        public async Task UpdatePet(int IdFamily, Pet pet)
         {
             int id = FileContext.Families.First(f => f.Id == IdFamily).Pets.IndexOf(pet);
             FileContext.Families.First(f => f.Id == IdFamily).Pets[id] = pet;
             FileContext.SaveChanges();
         }
         
-        public async Task RemoveFamilyAsync(Family family)
+        public async Task RemoveFamily(Family family)
         {
             FileContext.Families.Remove(family);
             FileContext.SaveChanges();
         }
 
-        public async Task RemoveAdultAsync(int IdFamily, Adult adult)
+        public async Task RemoveAdult(int IdFamily, Adult adult)
         {
             FileContext.Families.First(f => f.Id == IdFamily).Adults.Remove(adult);
             FileContext.SaveChanges();    
         }
 
-        public async Task RemoveChildAsync(int IdFamily, Child child)
+        public async Task RemoveChild(int IdFamily, Child child)
         {
             FileContext.Families.First(f => f.Id == IdFamily).Children.Remove(child);
             FileContext.SaveChanges();
         }
 
-        public async Task RemovePetAsync(int IdFamily, Pet pet)
+        public async Task RemovePet(int IdFamily, Pet pet)
         {
             FileContext.Families.First(f => f.Id == IdFamily).Pets.Remove(pet);
             FileContext.SaveChanges();

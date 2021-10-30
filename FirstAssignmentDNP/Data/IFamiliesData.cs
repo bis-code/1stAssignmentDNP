@@ -14,16 +14,16 @@ namespace FirstAssignmentDNP.Data
         Task AddAdultToFamilyAsync(Family family, Adult _newAdult);
         Task AddChildToFamilyAsync(Family family, Child _newChild);
         Task AddFamilyAsync(Family family);
-        Task AddInterestAsync(int IdFamily, Child child, Interest interest);
-        Task AddPetForFamilyAsync(Family family, Child? child, Pet pet);
+        Task AddInterest(int IdFamily, Child child, Interest interest);
+        Task AddPetForFamily(Family family, Child? child, Pet pet);
 
-        Task UpdateFamilyAsync(Family family);
-        Task UpdateAdultAsync(int familyId, Adult adult);
-        Task UpdateChildAsync(int familyId, Child child);
-        Task UpdatePetAsync(int familyId, Pet pet);
-        Task RemoveFamilyAsync(Family family);
-        Task RemoveAdultAsync(int IdFamily, Adult adult);
-        Task RemoveChildAsync(int IdFamily, Child child);
-        Task RemovePetAsync(int IdFamily, Pet pet);
+        Task UpdateFamily(Family family);
+        Task UpdateAdult(int familyId, Adult adult);
+        Task UpdateChild(int familyId, Child child);
+        Task UpdatePet(int familyId, Pet pet);
+        Task RemoveFamily(Family family);
+        Task RemoveAdult(int IdFamily, Adult adult);
+        Task RemoveChild(int IdFamily, Child child);
+        Task RemovePet(int IdFamily, Pet pet);
     }
 }

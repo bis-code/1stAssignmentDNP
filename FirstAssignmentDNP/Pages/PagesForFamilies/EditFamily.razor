@@ -42,7 +42,7 @@ else
 
     public void Save()
     {
-        FamiliesData.UpdateFamilyAsync(familyToEdit);
+        FamiliesData.UpdateFamily(familyToEdit);
         NavigationManager.NavigateTo($"/FamilyInfo/{Id}");
     }
 

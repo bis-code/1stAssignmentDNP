@@ -44,7 +44,7 @@ else
 
     public void AddInterestToChild()
     {
-        FamiliesData.AddInterestAsync(IdFamily, _child, _newInterest);
+        FamiliesData.AddInterest(IdFamily, _child, _newInterest);
         NavigationManager.NavigateTo($"/FamilyInfo/{IdFamily}");
     }
 
