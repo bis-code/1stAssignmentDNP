@@ -149,18 +149,26 @@
 
             <br/>
         }
-        @if (_family.Adults.Count <= 2)
-        {
-            <button class="btn btn-outline-primary" @onclick="@((arg => AddAdult(Id)))" type="button">Add Adult</button>
-        }
     }
     else
     {
         <div class="col-lg-12 col-lg-12 text-center">
             <h2>
-                <span class="text-sm-left">No adults yet.<br/>Firstly add an adult in order to add children or pets.</span>
+                <span class="badge badge-primary">No adults yet.</span>
             </h2>
-            <button class="btn btn-outline-primary" @onclick="@((arg => AddAdult(Id)))" type="button">Add</button>
+            @* <button class="btn btn-outline-primary" @onclick="AddAdult" type="button">Add</button> *@
+        </div>
+        <div class="col-lg-12 col-lg-12 text-center">
+            <h2>
+                <span class="badge badge-primary">No children</span>
+            </h2>
+            @* <button class="btn btn-outline-primary" @onclick="AddChild" type="button">Add</button> *@
+        </div>
+        <div class="col-lg-12 col-lg-12 text-center">
+            <h2>
+                <span class="badge badge-primary">No pets</span>
+            </h2>
+            @* <button class="btn btn-outline-primary" @onclick="AddPet" type="button">Add</button> *@
         </div>
     }
 </div>
@@ -194,14 +202,9 @@
                                 {
                                     <p>
                                         No interests. Add one?
-                                        <button class="btn btn-outline-primary" @onclick="@(arg => AddInterestForChild(child.Id))" type="button">Add</button>
+                                        @* <button class="btn btn-outline-primary" @onclick="AddInterestForChild" type="button">Add</button> *@
                                     </p>
                                 }
-                            </em>
-                            <em>
-                                <p>
-                                    Add pet? <button class="btn btn-outline-primary" @onclick="@(arg => AddPet(child.Id))" type="button">Add</button>
-                                </p>
                             </em>
                         </div>
                         <div class="bg-white rounded-right">
@@ -258,7 +261,7 @@
                 <h2>
                     <span class="badge badge-primary">No children</span>
                 </h2>
-                <button class="btn btn-outline-primary" @onclick="AddChild" type="button">Add</button>
+                @* <button class="btn btn-outline-primary" @onclick="AddChild" type="button">Add</button> *@
             </div>
         }
     }
@@ -303,7 +306,6 @@
             </div>
             <br/>
         }
-        <button type="button" class="disabled btn btn-outline-primary" @onclick="@(() => AddPet())">Add Pet</button>
     }
     else
     {
@@ -313,7 +315,7 @@
                 <h2>
                     <span class="badge badge-primary">No pets</span>
                 </h2>
-                <button class="btn btn-outline-primary" @onclick="AddPet" type="button">Add</button>
+                @* <button class="btn btn-outline-primary" @onclick="AddPet" type="button">Add</button> *@
             </div>
         }
     }
@@ -345,7 +347,7 @@
                                     <hr class="badge-primary mt-0 w-25">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                            <p class="font-weight-bold">Species: @pet.Species</p>
+                                            <p class="font-weight-bold">Specie: @pet.Species</p>
                                         </div>
                                         <div class="col-lg-6">
                                             <p class="font-weight-bold">Age: @pet.Age</p>
@@ -366,7 +368,8 @@
             }
             else
             {
-                <div class="col-lg-12">
+                <div
+                    class="col-lg-12">
                     <p class="text-muted"> No pets for @child.FirstName </p >
                 </div>
             }
@@ -432,30 +435,5 @@
     private void EditPet(int IdFamily,int Id)
     {
         NavigationManager.NavigateTo($"/EditPet/{IdFamily}/{Id}");
-    }
-
-    private void AddAdult(int IdFamily)
-    {
-        NavigationManager.NavigateTo($"/AddAdult/{IdFamily}");
-    }
-
-    private void AddChild()
-    {
-        NavigationManager.NavigateTo($"/AddChild/{Id}");
-    }
-
-    private void AddPet()
-    {
-        NavigationManager.NavigateTo($"/AddPet/{Id}");
-    }
-    
-    private void AddPet(int childId)
-    {
-        NavigationManager.NavigateTo($"/AddPet/{Id}/{childId}");
-    }
-
-    private void AddInterestForChild(int childId)
-    {
-        NavigationManager.NavigateTo($"/AddInterest/{Id}/{childId}");
     }
 }

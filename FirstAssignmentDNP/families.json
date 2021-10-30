@@ -325,51 +325,30 @@
     "Pets": []
   },
   {
+    "Id": 10,
+    "Photo": "default.png",
+    "StreetName": "324",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
+    "Id": 11,
+    "Photo": "default.png",
+    "StreetName": "Kamtjatka",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
     "Id": 12,
     "Photo": "default.png",
     "StreetName": "Kamtjatka",
     "HouseNumber": 12,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "JobTest",
-          "Salary": 23141
-        },
-        "Id": 1,
-        "FirstName": "Das",
-        "LastName": "Baicoianu",
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 123,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
-    "Children": [
-      {
-        "Interests": [],
-        "Pets": [
-          {
-            "Id": 1,
-            "Species": "Species",
-            "Name": "Name",
-            "Age": 12
-          }
-        ],
-        "Id": 1,
-        "FirstName": "Ionut",
-        "LastName": null,
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 123,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
+    "Adults": [],
+    "Children": [],
     "Pets": []
   },
   {
@@ -418,28 +397,20 @@
     "Pets": []
   },
   {
+    "Id": 20,
+    "Photo": "default.png",
+    "StreetName": "adslk",
+    "HouseNumber": 12,
+    "Adults": [],
+    "Children": [],
+    "Pets": []
+  },
+  {
     "Id": 21,
     "Photo": "default.png",
     "StreetName": "Kamtjatka",
     "HouseNumber": 12,
-    "Adults": [
-      {
-        "JobTitle": {
-          "JobTitle": "TCPJob",
-          "Salary": 123251
-        },
-        "Id": 1,
-        "FirstName": "Ionut",
-        "LastName": "Baicoianu",
-        "HairColor": "Dark",
-        "EyeColor": "Dark",
-        "Age": 23,
-        "Weight": 123,
-        "Height": 123,
-        "Sex": "M",
-        "Photo": "default.png"
-      }
-    ],
+    "Adults": [],
     "Children": [],
     "Pets": []
   },
